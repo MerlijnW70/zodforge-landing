@@ -121,7 +121,7 @@ const pricingTiers = [
             ) : (
               <button
                 class={tier.popular ? 'btn-primary w-full' : 'btn-secondary w-full'}
-                onclick={`handleCheckout('${tier.stripePriceId}', '${tier.name.toLowerCase()}')`}
+                onclick={`handleCheckout.call(this, '${tier.stripePriceId}', '${tier.name.toLowerCase()}')`}
                 data-price-id={tier.stripePriceId}
                 data-tier={tier.name.toLowerCase()}
               >
@@ -146,14 +146,14 @@ const pricingTiers = [
 
 <script>
   // Handle Stripe Checkout
-  async function handleCheckout(priceId: string, tier: string) {
+  async function handleCheckout(this: HTMLButtonElement, priceId: string, tier: string) {
+    const button = this;
+    const originalText = button.textContent || 'Start Trial';
+
     try {
       // Show loading state
-      const button = event?.target as HTMLButtonElement;
-      if (button) {
-        button.disabled = true;
-        button.textContent = 'Loading...';
-      }
+      button.disabled = true;
+      button.textContent = 'Loading...';
 
       // Call our API to create checkout session
       const response = await fetch('/api/create-checkout', {
@@ -180,11 +180,8 @@ const pricingTiers = [
       alert('Failed to start checkout. Please try again or contact support.');
 
       // Reset button state
-      const button = event?.target as HTMLButtonElement;
-      if (button) {
-        button.disabled = false;
-        button.textContent = tier === 'pro' ? 'Start Pro Trial' : 'Start Enterprise Trial';
-      }
+      button.disabled = false;
+      button.textContent = originalText;
     }
   }
 
