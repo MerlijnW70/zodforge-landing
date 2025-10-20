@@ -167,13 +167,19 @@ const pricingTiers = [
         }),
       });
 
+      console.log('Response status:', response.status);
       const data = await response.json();
+      console.log('Response data:', data);
+
+      if (!response.ok) {
+        throw new Error(data.message || `Server error: ${response.status}`);
+      }
 
       if (data.url) {
         // Redirect to Stripe Checkout
         window.location.href = data.url;
       } else {
-        throw new Error('No checkout URL returned');
+        throw new Error('No checkout URL returned from server');
       }
     } catch (error) {
       console.error('Checkout error:', error);
