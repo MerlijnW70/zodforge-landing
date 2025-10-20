@@ -10,16 +10,23 @@ export const prerender = false; // This is a server-side route
 
 export const POST: APIRoute = async ({ request }) => {
   try {
+    console.log('Checkout API called');
+
     // Parse request body
     const body = await request.json();
     const { priceId, tier } = body;
 
+    console.log('Request data:', { priceId, tier });
+
     if (!priceId) {
+      console.error('Missing priceId in request');
       return new Response(
         JSON.stringify({ error: 'Missing priceId' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
+
+    console.log('Creating Stripe checkout session...');
 
     // Get the origin for success/cancel URLs
     const origin = request.headers.get('origin') || 'http://localhost:4321';
@@ -49,6 +56,11 @@ export const POST: APIRoute = async ({ request }) => {
       customer_email: body.email || undefined, // Optional: pre-fill email
     });
 
+    console.log('Session created successfully:', {
+      sessionId: session.id,
+      url: session.url
+    });
+
     // Return checkout URL
     return new Response(
       JSON.stringify({
@@ -63,11 +75,17 @@ export const POST: APIRoute = async ({ request }) => {
 
   } catch (error: any) {
     console.error('Stripe checkout error:', error);
+    console.error('Error details:', {
+      message: error.message,
+      type: error.type,
+      stack: error.stack
+    });
 
     return new Response(
       JSON.stringify({
         error: 'Failed to create checkout session',
-        message: error.message
+        message: error.message,
+        details: error.type || 'unknown_error'
       }),
       {
         status: 500,
