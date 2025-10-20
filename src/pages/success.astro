@@ -84,9 +84,9 @@ const sessionId = Astro.url.searchParams.get('session_id');
       <div class="card text-left mb-8">
         <h2 class="text-2xl font-bold mb-4">Quick Start Example</h2>
         <p class="text-gray-300 mb-4">Once you have your API key, try this:</p>
-        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto text-sm"><code>curl -X POST https://web-production-f15d.up.railway.app/api/v1/refine \
-  -H "Authorization: Bearer YOUR_API_KEY" \
-  -H "Content-Type: application/json" \
+        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto text-sm"><code>{`curl -X POST https://web-production-f15d.up.railway.app/api/v1/refine \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
   -d '{
     "schema": {
       "code": "z.object({ email: z.string() })",
@@ -94,7 +94,7 @@ const sessionId = Astro.url.searchParams.get('session_id');
       "fields": { "email": "z.string()" }
     },
     "samples": [{ "email": "test@example.com" }]
-  }'</code></pre>
+  }'`}</code></pre>
       </div>
 
       <!-- CTAs -->
