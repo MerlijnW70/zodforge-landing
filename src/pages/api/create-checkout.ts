@@ -8,9 +8,85 @@ const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY || '', {
 
 export const prerender = false; // This is a server-side route
 
+// CORS Configuration
+const ALLOWED_ORIGINS = [
+  'https://zodforge.dev',
+  'https://zodforge-landing.vercel.app',
+  ...(import.meta.env.DEV ? ['http://localhost:4321'] : []),
+];
+
+// Simple in-memory rate limiting (per IP)
+const rateLimits = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT = 5; // requests
+const RATE_WINDOW = 60 * 1000; // 1 minute
+
+function checkRateLimit(ip: string): { allowed: boolean; retryAfter?: number } {
+  const now = Date.now();
+  const limit = rateLimits.get(ip);
+
+  if (!limit || now > limit.resetAt) {
+    // Reset or create new limit
+    rateLimits.set(ip, { count: 1, resetAt: now + RATE_WINDOW });
+    return { allowed: true };
+  }
+
+  if (limit.count >= RATE_LIMIT) {
+    const retryAfter = Math.ceil((limit.resetAt - now) / 1000);
+    return { allowed: false, retryAfter };
+  }
+
+  limit.count++;
+  return { allowed: true };
+}
+
 export const POST: APIRoute = async ({ request }) => {
   try {
+    // 1. CORS Check
+    const origin = request.headers.get('origin');
+
+    if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+      console.warn('[Security] Blocked request from unauthorized origin:', origin);
+      return new Response(
+        JSON.stringify({ error: 'Forbidden', message: 'Origin not allowed' }),
+        { status: 403, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // 2. Rate Limiting
+    const clientIP = request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip') || 'unknown';
+    const rateCheck = checkRateLimit(clientIP);
+
+    if (!rateCheck.allowed) {
+      console.warn('[Security] Rate limit exceeded for IP:', clientIP);
+      return new Response(
+        JSON.stringify({
+          error: 'Too Many Requests',
+          message: 'Rate limit exceeded. Please try again later.',
+          retryAfter: rateCheck.retryAfter
+        }),
+        {
+          status: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': String(rateCheck.retryAfter)
+          }
+        }
+      );
+    }
+
     console.log('Checkout API called');
+
+    // 3. Request Size Limit (prevent large payloads)
+    const contentLength = request.headers.get('content-length');
+    const MAX_BODY_SIZE = 10 * 1024; // 10KB
+
+    if (contentLength && parseInt(contentLength) > MAX_BODY_SIZE) {
+      console.warn('[Security] Request payload too large:', contentLength);
+      return new Response(
+        JSON.stringify({ error: 'Payload Too Large', message: 'Request body exceeds maximum size' }),
+        { status: 413, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
 
     // Parse request body
     const body = await request.json();
@@ -28,8 +104,9 @@ export const POST: APIRoute = async ({ request }) => {
 
     console.log('Creating Stripe checkout session...');
 
-    // Get the origin for success/cancel URLs
-    const origin = request.headers.get('origin') || 'http://localhost:4321';
+    // Get the origin for success/cancel URLs (whitelist for security)
+    const requestOrigin = request.headers.get('origin') || request.headers.get('referer') || '';
+    const safeOrigin = ALLOWED_ORIGINS.find(allowed => requestOrigin.startsWith(allowed)) || 'https://zodforge.dev';
 
     // Create Stripe Checkout Session
     const session = await stripe.checkout.sessions.create({
@@ -41,8 +118,8 @@ export const POST: APIRoute = async ({ request }) => {
           quantity: 1,
         },
       ],
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/#pricing`,
+      success_url: `${safeOrigin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${safeOrigin}/#pricing`,
       metadata: {
         tier: tier || 'pro', // Store tier for webhook
       },
@@ -81,11 +158,14 @@ export const POST: APIRoute = async ({ request }) => {
       stack: error.stack
     });
 
+    // Sanitize error response for production (don't expose internals)
+    const isDev = import.meta.env.DEV;
+
     return new Response(
       JSON.stringify({
         error: 'Failed to create checkout session',
-        message: error.message,
-        details: error.type || 'unknown_error'
+        message: isDev ? error.message : 'An error occurred while processing your request',
+        ...(isDev && { details: error.type || 'unknown_error' }),
       }),
       {
         status: 500,

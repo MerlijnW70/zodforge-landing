@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import Stripe from 'stripe';
 import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
+import crypto from 'crypto';
 
 // Initialize services
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY || '', {
@@ -19,10 +20,15 @@ export const prerender = false;
 
 // Helper: Generate API key
 function generateApiKey(): string {
-  const crypto = globalThis.crypto || require('crypto').webcrypto;
+  const webcrypto = globalThis.crypto || require('crypto').webcrypto;
   const array = new Uint8Array(32);
-  crypto.getRandomValues(array);
+  webcrypto.getRandomValues(array);
   return 'zf_' + Array.from(array, byte => byte.toString(16).padStart(2, '0')).join('');
+}
+
+// Helper: Hash API key for secure storage
+function hashApiKey(key: string): string {
+  return crypto.createHash('sha256').update(key).digest('hex');
 }
 
 // Helper: Send API key email
@@ -145,14 +151,15 @@ export const POST: APIRoute = async ({ request }) => {
 
         // Generate API key
         const apiKey = generateApiKey();
+        const apiKeyHash = hashApiKey(apiKey);
 
-        // Store in Supabase
+        // Store in Supabase (store hash only, not plaintext)
         const { data, error: dbError } = await supabase
           .from('customers')
           .insert({
             stripe_customer_id: customerId,
             email: customerEmail,
-            api_key: apiKey,
+            api_key_hash: apiKeyHash, // Store hash instead of plaintext
             tier: tier,
             subscription_status: 'active',
             created_at: new Date().toISOString(),
