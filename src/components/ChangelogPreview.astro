@@ -1,0 +1,115 @@
+---
+const latestUpdates = [
+  {
+    version: 'v1.1.0',
+    date: 'October 20, 2025',
+    badge: 'Latest',
+    updates: [
+      { type: 'new', text: 'Landing page with Stripe integration and subscription plans' },
+      { type: 'new', text: 'Complete legal pages (Privacy, Terms, Security)' },
+      { type: 'new', text: 'Comprehensive API documentation with code examples' },
+      { type: 'new', text: 'Email delivery of API keys after payment' },
+      { type: 'improved', text: 'Enhanced error messages and faster response times (<2s)' },
+    ],
+  },
+  {
+    version: 'v1.0.0',
+    date: 'September 15, 2025',
+    badge: null,
+    updates: [
+      { type: 'new', text: 'ZodForge CLI for TypeScript + Zod schema generation' },
+      { type: 'new', text: 'Dual AI providers: OpenAI GPT-4 + Anthropic Claude fallback' },
+      { type: 'new', text: 'Automatic pattern detection (emails, URLs, UUIDs, dates)' },
+      { type: 'new', text: '751 passing tests for reliability' },
+    ],
+  },
+];
+---
+
+<section class="py-24 px-4 bg-gray-900/50">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        What's <span class="gradient-text">New</span>
+      </h2>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        We ship new features, improvements, and fixes regularly. Stay up to date with the latest changes.
+      </p>
+    </div>
+
+    <!-- Latest Updates -->
+    <div class="max-w-4xl mx-auto space-y-8">
+      {
+        latestUpdates.map((release) => (
+          <div class="card">
+            <div class="flex items-start justify-between mb-6">
+              <div>
+                <div class="flex items-center gap-3 mb-2">
+                  <h3 class="text-2xl font-bold text-white">{release.version}</h3>
+                  {release.badge && (
+                    <span class="px-3 py-1 bg-primary-600 text-white text-xs rounded-full">
+                      {release.badge}
+                    </span>
+                  )}
+                </div>
+                <p class="text-sm text-gray-400">{release.date}</p>
+              </div>
+            </div>
+
+            <div class="space-y-3">
+              {release.updates.map((update) => (
+                <div class="flex items-start gap-3">
+                  {update.type === 'new' ? (
+                    <div class="flex-shrink-0 w-6 h-6 rounded-full bg-green-500/10 flex items-center justify-center mt-0.5">
+                      <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                      </svg>
+                    </div>
+                  ) : update.type === 'improved' ? (
+                    <div class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500/10 flex items-center justify-center mt-0.5">
+                      <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+                    </div>
+                  ) : (
+                    <div class="flex-shrink-0 w-6 h-6 rounded-full bg-yellow-500/10 flex items-center justify-center mt-0.5">
+                      <svg class="w-4 h-4 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                      </svg>
+                    </div>
+                  )}
+                  <p class="text-gray-300 text-sm leading-relaxed">{update.text}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- View Full Changelog CTA -->
+    <div class="text-center mt-12">
+      <a href="/changelog" class="btn-secondary inline-flex items-center gap-2">
+        View Full Changelog
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
+    </div>
+
+    <!-- Subscribe to Updates -->
+    <div class="mt-12 text-center">
+      <p class="text-gray-400 text-sm mb-4">
+        Want to stay updated? Subscribe to our newsletter below or
+        <a
+          href="https://github.com/MerlijnW70/zodforge"
+          target="_blank"
+          class="text-primary-400 hover:underline"
+        >
+          watch on GitHub
+        </a>
+      </p>
+    </div>
+  </div>
+</section>
