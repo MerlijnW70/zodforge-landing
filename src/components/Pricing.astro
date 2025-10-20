@@ -12,8 +12,8 @@ const pricingTiers = [
       'Community access',
       'Public API documentation',
     ],
-    cta: 'Start Free',
-    ctaLink: '#', // TODO: Will be Stripe checkout link
+    cta: 'Get Started Free',
+    ctaLink: '/docs#getting-started',
     popular: false,
   },
   {
@@ -29,8 +29,8 @@ const pricingTiers = [
       'Advanced analytics',
       '99.99% uptime SLA',
     ],
-    cta: 'Start Pro Trial',
-    ctaLink: '#', // TODO: Will be Stripe checkout link
+    cta: 'Start 7-Day Free Trial',
+    ctaLink: '#',
     popular: true,
     stripePriceId: 'price_1SKHysR2O9PHYO561kkx1QyL', // Pro plan: $19/month
   },
@@ -48,8 +48,8 @@ const pricingTiers = [
       'On-premise option',
       'Team management',
     ],
-    cta: 'Start Enterprise Trial',
-    ctaLink: '#', // TODO: Will be Stripe checkout link
+    cta: 'Start 7-Day Free Trial',
+    ctaLink: '#',
     popular: false,
     stripePriceId: 'price_1SKHySR2O9PHYO56oc9SubWJ', // Enterprise plan: $99/month
   },
@@ -112,11 +112,13 @@ const pricingTiers = [
 
             {tier.name === 'Free' ? (
               <a
-                href="#"
+                href="/docs#getting-started"
                 class="btn-secondary w-full text-center block"
-                onclick="alert('Free tier: Simply use the API without signing up! Visit the documentation to get started.')"
               >
                 {tier.cta}
+                <svg class="inline w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                </svg>
               </a>
             ) : (
               <button
