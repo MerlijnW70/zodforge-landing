@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Get session ID from URL
+const sessionId = Astro.url.searchParams.get('session_id');
+---
+
+<BaseLayout title="Payment Successful - ZodForge Cloud" description="Your ZodForge Cloud subscription is now active!">
+  <main class="min-h-screen flex items-center justify-center px-4 py-20">
+    <div class="max-w-2xl mx-auto text-center">
+      <!-- Success Icon -->
+      <div class="mb-8">
+        <div class="inline-flex items-center justify-center w-24 h-24 bg-green-500/10 rounded-full">
+          <svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Success Message -->
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">
+        Payment Successful! 🎉
+      </h1>
+
+      <p class="text-xl text-gray-300 mb-8">
+        Your ZodForge Cloud subscription is now active.
+      </p>
+
+      <!-- Email Notice -->
+      <div class="card mb-8 text-left">
+        <h2 class="text-2xl font-bold mb-4 flex items-center gap-3">
+          <svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+            ></path>
+          </svg>
+          Check Your Email
+        </h2>
+        <p class="text-gray-300 mb-4">
+          We've sent your <strong class="text-white">API key</strong> to your email address. It should arrive within the
+          next minute.
+        </p>
+        <div class="bg-gray-900 p-4 rounded-lg">
+          <p class="text-sm text-gray-400 mb-2">Your API key will look like this:</p>
+          <code class="text-green-400 font-mono">zf_abc123def456ghi789...</code>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="card text-left mb-8">
+        <h2 class="text-2xl font-bold mb-4">What's Next?</h2>
+        <ol class="space-y-4 text-gray-300">
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-primary-600 rounded-full text-sm font-bold">
+              1
+            </span>
+            <div>
+              <strong class="text-white">Check your email</strong> for your API key
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-primary-600 rounded-full text-sm font-bold">
+              2
+            </span>
+            <div>
+              <strong class="text-white">Read the documentation</strong> to get started
+            </div>
+          </li>
+          <li class="flex gap-4">
+            <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 bg-primary-600 rounded-full text-sm font-bold">
+              3
+            </span>
+            <div>
+              <strong class="text-white">Make your first API call</strong> to refine schemas
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Quick Start -->
+      <div class="card text-left mb-8">
+        <h2 class="text-2xl font-bold mb-4">Quick Start Example</h2>
+        <p class="text-gray-300 mb-4">Once you have your API key, try this:</p>
+        <pre class="bg-gray-900 p-4 rounded-lg overflow-x-auto text-sm"><code>curl -X POST https://web-production-f15d.up.railway.app/api/v1/refine \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "schema": {
+      "code": "z.object({ email: z.string() })",
+      "typeName": "User",
+      "fields": { "email": "z.string()" }
+    },
+    "samples": [{ "email": "test@example.com" }]
+  }'</code></pre>
+      </div>
+
+      <!-- CTAs -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="https://web-production-f15d.up.railway.app/api/v1/health"
+          target="_blank"
+          class="btn-primary"
+        >
+          Check API Status
+        </a>
+        <a href="/" class="btn-secondary">Back to Home</a>
+      </div>
+
+      <!-- Support -->
+      <p class="mt-8 text-gray-400 text-sm">
+        Need help? Check the <a href="/docs" class="text-primary-400 hover:underline">documentation</a> or email
+        <a href="mailto:support@zodforge.dev" class="text-primary-400 hover:underline">support@zodforge.dev</a>
+      </p>
+
+      {
+        sessionId && (
+          <p class="mt-4 text-gray-500 text-xs font-mono">Session ID: {sessionId.substring(0, 20)}...</p>
+        )
+      }
+    </div>
+  </main>
+</BaseLayout>

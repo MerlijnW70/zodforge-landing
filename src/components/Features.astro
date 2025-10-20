@@ -1,0 +1,100 @@
+---
+const features = [
+  {
+    icon: '🤖',
+    title: 'Dual AI Providers',
+    description:
+      'Powered by OpenAI GPT-4 Turbo and Anthropic Claude 3.5 Sonnet with automatic fallback for 99.99% uptime.',
+  },
+  {
+    icon: '⚡',
+    title: 'Lightning Fast',
+    description:
+      'Average response time under 2 seconds. Get refined schemas instantly without waiting.',
+  },
+  {
+    icon: '🔒',
+    title: 'Enterprise Security',
+    description:
+      '10-layer security hardening with rate limiting, API key validation, and comprehensive audit logs.',
+  },
+  {
+    icon: '📊',
+    title: 'Smart Refinement',
+    description:
+      'AI analyzes your schemas and suggests improvements: better constraints, clearer validation, production patterns.',
+  },
+  {
+    icon: '🎯',
+    title: 'Type-Safe',
+    description:
+      'Generate fully typed TypeScript + Zod schemas with IntelliSense support and compile-time safety.',
+  },
+  {
+    icon: '🌍',
+    title: 'Always Available',
+    description:
+      'Multi-region deployment with automatic failover. Your API is always accessible when you need it.',
+  },
+];
+---
+
+<section id="features" class="py-24 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        Why <span class="gradient-text">ZodForge Cloud</span>?
+      </h2>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Production-ready schema refinement with enterprise features and AI-powered intelligence.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        features.map((feature) => (
+          <div class="card hover:border-primary-600/50 transition-colors duration-300">
+            <div class="text-5xl mb-4">{feature.icon}</div>
+            <h3 class="text-2xl font-bold mb-3">{feature.title}</h3>
+            <p class="text-gray-300 leading-relaxed">{feature.description}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- Code Example -->
+    <div class="mt-20 card">
+      <h3 class="text-2xl font-bold mb-6 text-center">See It In Action</h3>
+      <div class="grid md:grid-cols-2 gap-6">
+        <!-- Before -->
+        <div>
+          <div class="text-sm font-mono text-gray-400 mb-2">Input Schema:</div>
+          <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+            <pre class="text-gray-300"><code>{`z.object({
+  email: z.string(),
+  age: z.number(),
+  status: z.string(),
+})`}</code></pre>
+          </div>
+        </div>
+
+        <!-- After -->
+        <div>
+          <div class="text-sm font-mono text-gray-400 mb-2">AI-Refined Schema:</div>
+          <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
+            <pre class="text-green-300"><code>{`z.object({
+  email: z.string().email().toLowerCase(),
+  age: z.number().int().min(0).max(150),
+  status: z.enum(['active', 'inactive']),
+})`}</code></pre>
+          </div>
+        </div>
+      </div>
+      <div class="mt-4 text-center text-sm text-gray-400">
+        <strong class="text-primary-400">3 improvements</strong> in under 2 seconds
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,133 @@
+---
+const pricingTiers = [
+  {
+    name: 'Free',
+    price: '$0',
+    period: 'forever',
+    description: 'Perfect for trying out ZodForge Cloud',
+    features: [
+      '100 requests/month',
+      'OpenAI GPT-4 Turbo only',
+      'Basic support',
+      'Community access',
+      'Public API documentation',
+    ],
+    cta: 'Start Free',
+    ctaLink: '#', // TODO: Will be Stripe checkout link
+    popular: false,
+  },
+  {
+    name: 'Pro',
+    price: '$19',
+    period: '/month',
+    description: 'For professionals and small teams',
+    features: [
+      '5,000 requests/month',
+      'OpenAI + Claude fallback',
+      'Priority support',
+      'Private Slack channel',
+      'Advanced analytics',
+      '99.99% uptime SLA',
+    ],
+    cta: 'Start Pro Trial',
+    ctaLink: '#', // TODO: Will be Stripe checkout link
+    popular: true,
+    stripePriceId: 'price_PLACEHOLDER', // TODO: Replace with actual Stripe price ID
+  },
+  {
+    name: 'Enterprise',
+    price: '$99',
+    period: '/month',
+    description: 'For teams with demanding needs',
+    features: [
+      'Unlimited requests',
+      'All AI providers',
+      'Dedicated support',
+      'Custom SLA',
+      'Custom integrations',
+      'On-premise option',
+      'Team management',
+    ],
+    cta: 'Start Enterprise Trial',
+    ctaLink: '#', // TODO: Will be Stripe checkout link
+    popular: false,
+    stripePriceId: 'price_PLACEHOLDER', // TODO: Replace with actual Stripe price ID
+  },
+];
+---
+
+<section id="pricing" class="py-24 px-4 bg-gray-900/50">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        Simple, <span class="gradient-text">Transparent Pricing</span>
+      </h2>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        Start free, upgrade when you need more. No hidden fees, cancel anytime.
+      </p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      {
+        pricingTiers.map((tier) => (
+          <div
+            class={`card relative ${
+              tier.popular
+                ? 'border-primary-600 shadow-2xl shadow-primary-600/20 scale-105'
+                : 'border-gray-700'
+            }`}
+          >
+            {tier.popular && (
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-gradient-to-r from-primary-600 to-cyan-600 rounded-full text-sm font-semibold">
+                Most Popular
+              </div>
+            )}
+
+            <div class="mb-6">
+              <h3 class="text-2xl font-bold mb-2">{tier.name}</h3>
+              <p class="text-gray-400 text-sm mb-4">{tier.description}</p>
+              <div class="flex items-baseline gap-2">
+                <span class="text-5xl font-bold gradient-text">{tier.price}</span>
+                <span class="text-gray-400">{tier.period}</span>
+              </div>
+            </div>
+
+            <ul class="space-y-3 mb-8">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-3">
+                  <svg
+                    class="w-5 h-5 text-primary-400 flex-shrink-0 mt-0.5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span class="text-gray-300">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={tier.ctaLink}
+              class={tier.popular ? 'btn-primary w-full text-center block' : 'btn-secondary w-full text-center block'}
+            >
+              {tier.cta}
+            </a>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- FAQ / Trust Signals -->
+    <div class="mt-16 text-center">
+      <p class="text-gray-400">
+        <strong class="text-white">100% money-back guarantee.</strong> Cancel anytime, no questions asked.
+        <br />
+        All plans include 7-day free trial.
+      </p>
+    </div>
+  </div>
+</section>

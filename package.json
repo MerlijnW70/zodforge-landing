@@ -1,0 +1,31 @@
+{
+  "name": "zodforge-landing",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "keywords": [
+    "zodforge",
+    "landing",
+    "saas",
+    "monetization"
+  ],
+  "author": "merlin white",
+  "license": "MIT",
+  "description": "ZodForge Cloud - AI-Powered Schema Refinement API Landing Page",
+  "dependencies": {
+    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/vercel": "^8.2.10",
+    "@stripe/stripe-js": "^8.1.0",
+    "@supabase/supabase-js": "^2.75.1",
+    "astro": "^5.14.6",
+    "resend": "^6.2.0",
+    "stripe": "^19.1.0",
+    "tailwindcss": "^3.4.18"
+  }
+}
