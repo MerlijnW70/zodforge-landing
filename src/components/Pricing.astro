@@ -110,12 +110,24 @@ const pricingTiers = [
               ))}
             </ul>
 
-            <a
-              href={tier.ctaLink}
-              class={tier.popular ? 'btn-primary w-full text-center block' : 'btn-secondary w-full text-center block'}
-            >
-              {tier.cta}
-            </a>
+            {tier.name === 'Free' ? (
+              <a
+                href="#"
+                class="btn-secondary w-full text-center block"
+                onclick="alert('Free tier: Simply use the API without signing up! Visit the documentation to get started.')"
+              >
+                {tier.cta}
+              </a>
+            ) : (
+              <button
+                class={tier.popular ? 'btn-primary w-full' : 'btn-secondary w-full'}
+                onclick={`handleCheckout('${tier.stripePriceId}', '${tier.name.toLowerCase()}')`}
+                data-price-id={tier.stripePriceId}
+                data-tier={tier.name.toLowerCase()}
+              >
+                {tier.cta}
+              </button>
+            )}
           </div>
         ))
       }
@@ -131,3 +143,51 @@ const pricingTiers = [
     </div>
   </div>
 </section>
+
+<script>
+  // Handle Stripe Checkout
+  async function handleCheckout(priceId: string, tier: string) {
+    try {
+      // Show loading state
+      const button = event?.target as HTMLButtonElement;
+      if (button) {
+        button.disabled = true;
+        button.textContent = 'Loading...';
+      }
+
+      // Call our API to create checkout session
+      const response = await fetch('/api/create-checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          priceId: priceId,
+          tier: tier,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.url) {
+        // Redirect to Stripe Checkout
+        window.location.href = data.url;
+      } else {
+        throw new Error('No checkout URL returned');
+      }
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Failed to start checkout. Please try again or contact support.');
+
+      // Reset button state
+      const button = event?.target as HTMLButtonElement;
+      if (button) {
+        button.disabled = false;
+        button.textContent = tier === 'pro' ? 'Start Pro Trial' : 'Start Enterprise Trial';
+      }
+    }
+  }
+
+  // Make function globally available
+  (window as any).handleCheckout = handleCheckout;
+</script>
