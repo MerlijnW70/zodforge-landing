@@ -1,0 +1,303 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Terms of Service - ZodForge Cloud"
+  description="Terms of Service for ZodForge Cloud API. Review our service agreement, usage limits, and policies."
+>
+  <main class="min-h-screen py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="mb-12">
+        <a href="/" class="text-primary-400 hover:underline mb-4 inline-block">← Back to Home</a>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Terms of Service</h1>
+        <p class="text-gray-400">Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none">
+        <!-- Introduction -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">Agreement to Terms</h2>
+          <p class="text-gray-300 leading-relaxed">
+            By accessing or using ZodForge Cloud ("Service"), you agree to be bound by these Terms of Service ("Terms").
+            If you do not agree to these Terms, do not use the Service. These Terms apply to all users, including
+            free tier, pro, and enterprise subscribers.
+          </p>
+        </section>
+
+        <!-- Service Description -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">1. Service Description</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            ZodForge Cloud is an AI-powered schema refinement API that:
+          </p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Analyzes Zod schemas and suggests improvements</li>
+            <li>Uses OpenAI GPT-4 Turbo and Anthropic Claude 3.5 Sonnet</li>
+            <li>Provides type-safe TypeScript schema generation</li>
+            <li>Integrates with the ZodForge CLI tool</li>
+          </ul>
+          <p class="text-gray-300 leading-relaxed mt-4">
+            We strive for 99.99% uptime but do not guarantee uninterrupted service. The Service is provided "as is"
+            and may be modified, suspended, or discontinued at any time.
+          </p>
+        </section>
+
+        <!-- Account Registration -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">2. Account Registration</h2>
+          <h3 class="text-2xl font-semibold mb-3 text-white">2.1 Eligibility</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            You must be at least 18 years old and legally able to enter into contracts. By creating an account,
+            you represent that all information provided is accurate and current.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">2.2 Account Security</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">You are responsible for:</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Maintaining the confidentiality of your API keys</li>
+            <li>All activities that occur under your account</li>
+            <li>Notifying us immediately of unauthorized access</li>
+            <li>Not sharing your account or API keys with others</li>
+          </ul>
+        </section>
+
+        <!-- Subscription Plans -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">3. Subscription Plans & Billing</h2>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">3.1 Plan Tiers</h3>
+          <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 mb-6">
+            <ul class="space-y-4 text-gray-300">
+              <li>
+                <strong class="text-white">Free Tier:</strong> 100 requests/month, OpenAI only, no SLA
+              </li>
+              <li>
+                <strong class="text-white">Pro Tier ($19/month):</strong> 5,000 requests/month, OpenAI + Claude fallback,
+                priority support, 99.99% uptime SLA, 7-day free trial
+              </li>
+              <li>
+                <strong class="text-white">Enterprise Tier ($99/month):</strong> Unlimited requests, all AI providers,
+                dedicated support, custom SLA, team management, 7-day free trial
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">3.2 Billing</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
+            <li>Subscriptions are billed monthly in advance via Stripe</li>
+            <li>All fees are in USD and exclude applicable taxes</li>
+            <li>You authorize us to charge your payment method automatically</li>
+            <li>Failed payments may result in service suspension</li>
+            <li>Price changes will be communicated 30 days in advance</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">3.3 Free Trial</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Pro and Enterprise plans include a 7-day free trial. You may cancel anytime during the trial without charge.
+            After the trial, your subscription begins and payment is processed.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">3.4 Cancellation & Refunds</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Cancel anytime from your account dashboard or by emailing support</li>
+            <li>Cancellations take effect at the end of the current billing period</li>
+            <li>No refunds for partial months unless required by law</li>
+            <li><strong class="text-white">100% money-back guarantee:</strong> Full refund within 7 days of first charge (no questions asked)</li>
+            <li>Downgrading to a lower tier is prorated</li>
+          </ul>
+        </section>
+
+        <!-- Usage Limits -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">4. Usage Limits & Fair Use</h2>
+          <h3 class="text-2xl font-semibold mb-3 text-white">4.1 Rate Limits</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-4">
+            <li>Free: 100 requests/month, 10 requests/hour</li>
+            <li>Pro: 5,000 requests/month, 100 requests/hour</li>
+            <li>Enterprise: Unlimited, custom rate limits</li>
+          </ul>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Exceeding limits results in 429 (Too Many Requests) responses. Unused requests do not roll over.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">4.2 Fair Use Policy</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            "Unlimited" plans are subject to fair use. Excessive or abusive usage (e.g., millions of requests,
+            botting, reselling) may result in rate limiting or account suspension.
+          </p>
+        </section>
+
+        <!-- Acceptable Use -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">5. Acceptable Use Policy</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">You agree NOT to:</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Use the Service for illegal activities or to violate laws</li>
+            <li>Transmit malware, viruses, or harmful code</li>
+            <li>Attempt to bypass rate limits or security measures</li>
+            <li>Reverse engineer, decompile, or hack the Service</li>
+            <li>Resell or redistribute API access without authorization</li>
+            <li>Send abusive, harassing, or spam content through the API</li>
+            <li>Scrape, crawl, or harvest data from the Service</li>
+            <li>Overload or disrupt the Service infrastructure</li>
+            <li>Impersonate others or misrepresent your affiliation</li>
+          </ul>
+          <p class="text-gray-300 leading-relaxed mt-4">
+            Violations may result in immediate account termination without refund.
+          </p>
+        </section>
+
+        <!-- Intellectual Property -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">6. Intellectual Property</h2>
+          <h3 class="text-2xl font-semibold mb-3 text-white">6.1 Our IP</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            ZodForge, the ZodForge logo, and the Service are owned by us. You may not copy, modify, or
+            distribute our intellectual property without permission.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">6.2 Your Content</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            You retain ownership of schemas you submit. By using the Service, you grant us a license to
+            process your schemas for the sole purpose of providing the Service. We do not store your schemas
+            after processing (except temporary logs for debugging, deleted within 7 days).
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">6.3 Generated Output</h3>
+          <p class="text-gray-300 leading-relaxed">
+            You own the refined schemas generated by the Service. You may use them without restriction,
+            including in commercial projects.
+          </p>
+        </section>
+
+        <!-- Warranties & Liability -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">7. Disclaimers & Limitations</h2>
+          <h3 class="text-2xl font-semibold mb-3 text-white">7.1 No Warranties</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            THE SERVICE IS PROVIDED "AS IS" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+            BUT NOT LIMITED TO MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+            WE DO NOT GUARANTEE ACCURACY, RELIABILITY, OR AVAILABILITY.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">7.2 Limitation of Liability</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            TO THE MAXIMUM EXTENT PERMITTED BY LAW, WE SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
+            SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, OR ANY LOSS OF PROFITS, REVENUE, DATA, OR USE.
+            OUR TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID US IN THE 12 MONTHS PRIOR TO THE CLAIM.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">7.3 AI-Generated Content</h3>
+          <p class="text-gray-300 leading-relaxed">
+            AI-generated refinements are suggestions only. We are not responsible for errors, bugs, or
+            issues in generated schemas. Always review and test output before production use.
+          </p>
+        </section>
+
+        <!-- Indemnification -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">8. Indemnification</h2>
+          <p class="text-gray-300 leading-relaxed">
+            You agree to indemnify and hold us harmless from any claims, damages, losses, or expenses
+            (including legal fees) arising from your use of the Service, violation of these Terms,
+            or infringement of third-party rights.
+          </p>
+        </section>
+
+        <!-- Termination -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">9. Termination</h2>
+          <h3 class="text-2xl font-semibold mb-3 text-white">9.1 By You</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Cancel your account anytime by emailing <a href="mailto:support@zodforge.dev" class="text-primary-400 hover:underline">support@zodforge.dev</a>.
+            Cancellation takes effect at the end of the billing period.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">9.2 By Us</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            We may suspend or terminate your account immediately if you:
+          </p>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Violate these Terms or our Acceptable Use Policy</li>
+            <li>Fail to pay fees when due</li>
+            <li>Engage in fraudulent or illegal activity</li>
+            <li>Pose a security risk to the Service</li>
+          </ul>
+          <p class="text-gray-300 leading-relaxed mt-4">
+            We will provide notice when possible but may terminate without warning for severe violations.
+          </p>
+        </section>
+
+        <!-- Changes to Terms -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">10. Changes to Terms</h2>
+          <p class="text-gray-300 leading-relaxed">
+            We may update these Terms periodically. Material changes will be communicated via email 30 days
+            in advance. Continued use after changes constitutes acceptance. If you disagree, cancel your account.
+          </p>
+        </section>
+
+        <!-- Governing Law -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">11. Governing Law & Disputes</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            These Terms are governed by the laws of [Your Jurisdiction], without regard to conflict of law principles.
+            Disputes shall be resolved through binding arbitration in accordance with [Arbitration Rules].
+          </p>
+          <p class="text-gray-300 leading-relaxed">
+            You waive the right to a jury trial and class action lawsuits.
+          </p>
+        </section>
+
+        <!-- Miscellaneous -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">12. Miscellaneous</h2>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li><strong class="text-white">Entire Agreement:</strong> These Terms constitute the entire agreement between you and us.</li>
+            <li><strong class="text-white">Severability:</strong> If any provision is invalid, the remainder remains in effect.</li>
+            <li><strong class="text-white">Waiver:</strong> Failure to enforce any right does not waive that right.</li>
+            <li><strong class="text-white">Assignment:</strong> You may not assign these Terms; we may assign without notice.</li>
+            <li><strong class="text-white">Force Majeure:</strong> We are not liable for delays due to events beyond our control.</li>
+          </ul>
+        </section>
+
+        <!-- Contact -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">13. Contact Information</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Questions about these Terms? Contact us:
+          </p>
+          <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
+            <p class="text-gray-300">
+              <strong class="text-white">Email:</strong> <a href="mailto:legal@zodforge.dev" class="text-primary-400 hover:underline">legal@zodforge.dev</a><br />
+              <strong class="text-white">Support:</strong> <a href="mailto:support@zodforge.dev" class="text-primary-400 hover:underline">support@zodforge.dev</a><br />
+              <strong class="text-white">Website:</strong> <a href="https://zodforge.dev" class="text-primary-400 hover:underline">https://zodforge.dev</a>
+            </p>
+          </div>
+        </section>
+
+        <!-- Acceptance -->
+        <div class="bg-primary-600/10 border border-primary-600/30 rounded-lg p-6 mt-8">
+          <p class="text-gray-300 leading-relaxed">
+            <strong class="text-white">By using ZodForge Cloud, you acknowledge that you have read, understood,
+            and agree to be bound by these Terms of Service.</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose h2 {
+    margin-top: 2rem;
+  }
+  .prose h3 {
+    margin-top: 1.5rem;
+  }
+  .prose a {
+    transition: color 0.2s;
+  }
+</style>

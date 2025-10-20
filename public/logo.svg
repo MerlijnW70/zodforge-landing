@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 50" fill="none">
+  <!-- Icon part -->
+  <circle cx="25" cy="25" r="22" fill="#0ea5e9"/>
+  <g transform="translate(10, 12)">
+    <path d="M 5 5 L 20 5 L 5 25 L 20 25" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M 25 5 L 25 25 M 25 5 L 35 5 M 25 15 L 32 15" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- Text part -->
+  <text x="55" y="33" font-family="Inter, sans-serif" font-size="24" font-weight="800" fill="#fff">
+    ZodForge
+  </text>
+</svg>

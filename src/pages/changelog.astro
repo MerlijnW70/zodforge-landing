@@ -1,0 +1,264 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Changelog - ZodForge Cloud"
+  description="ZodForge Cloud changelog. See what's new, improvements, and bug fixes in our API service."
+>
+  <main class="min-h-screen py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="mb-12">
+        <a href="/" class="text-primary-400 hover:underline mb-4 inline-block">← Back to Home</a>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Changelog</h1>
+        <p class="text-xl text-gray-300">
+          Track new features, improvements, and bug fixes in ZodForge Cloud
+        </p>
+      </div>
+
+      <!-- Changelog Entries -->
+      <div class="space-y-12">
+        <!-- Version 1.1.0 -->
+        <div class="card">
+          <div class="flex items-start justify-between mb-4">
+            <div>
+              <h2 class="text-2xl font-bold text-white mb-1">Version 1.1.0</h2>
+              <p class="text-gray-400 text-sm">Released: October 20, 2025</p>
+            </div>
+            <span class="px-3 py-1 bg-primary-600 text-white text-sm rounded-full">Latest</span>
+          </div>
+
+          <div class="space-y-6">
+            <!-- New Features -->
+            <div>
+              <h3 class="text-lg font-semibold text-green-400 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                New Features
+              </h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li><strong class="text-white">Landing Page Launch:</strong> Full-featured landing page with Stripe integration</li>
+                <li><strong class="text-white">Subscription Plans:</strong> Pro ($19/mo) and Enterprise ($99/mo) tiers with 7-day free trials</li>
+                <li><strong class="text-white">Email Delivery:</strong> Automatic API key delivery via Resend after payment</li>
+                <li><strong class="text-white">Customer Dashboard:</strong> Track usage, manage API keys, view billing</li>
+                <li><strong class="text-white">Legal Pages:</strong> Complete Privacy Policy, Terms of Service, and Security documentation</li>
+                <li><strong class="text-white">API Documentation:</strong> Comprehensive docs with code examples in multiple languages</li>
+              </ul>
+            </div>
+
+            <!-- Improvements -->
+            <div>
+              <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                </svg>
+                Improvements
+              </h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Enhanced error messages with actionable guidance</li>
+                <li>Faster response times (avg. &lt;2s)</li>
+                <li>Better AI prompt engineering for more accurate refinements</li>
+                <li>Improved rate limiting with header feedback</li>
+              </ul>
+            </div>
+
+            <!-- Bug Fixes -->
+            <div>
+              <h3 class="text-lg font-semibold text-yellow-400 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                </svg>
+                Bug Fixes
+              </h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Fixed Stripe API version compatibility issues</li>
+                <li>Resolved webhook event handling edge cases</li>
+                <li>Fixed deprecated event handling in pricing component</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Version 1.0.0 -->
+        <div class="card">
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold text-white mb-1">Version 1.0.0</h2>
+            <p class="text-gray-400 text-sm">Released: September 15, 2025</p>
+          </div>
+
+          <div class="space-y-6">
+            <!-- New Features -->
+            <div>
+              <h3 class="text-lg font-semibold text-green-400 mb-3 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                </svg>
+                New Features
+              </h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li><strong class="text-white">CLI Tool Release:</strong> ZodForge CLI for TypeScript + Zod schema generation</li>
+                <li><strong class="text-white">Cloud API Beta:</strong> REST API for schema refinement</li>
+                <li><strong class="text-white">Dual AI Providers:</strong> OpenAI GPT-4 Turbo + Anthropic Claude 3.5 Sonnet fallback</li>
+                <li><strong class="text-white">Pattern Detection:</strong> Automatic detection of emails, URLs, UUIDs, dates</li>
+                <li><strong class="text-white">Smart Constraints:</strong> Realistic min/max values, enum detection, nullable inference</li>
+                <li><strong class="text-white">751 Passing Tests:</strong> Comprehensive test coverage for reliability</li>
+              </ul>
+            </div>
+
+            <!-- Technical Details -->
+            <div>
+              <h3 class="text-lg font-semibold text-blue-400 mb-3">Tech Stack</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>TypeScript 5.0 for type safety</li>
+                <li>Fastify 5.0 for high-performance HTTP server</li>
+                <li>Zod for schema validation</li>
+                <li>Railway for cloud hosting</li>
+                <li>Supabase for PostgreSQL database</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Roadmap -->
+        <div class="card bg-gradient-to-br from-primary-600/10 to-cyan-600/10 border-primary-600/30">
+          <div class="mb-4">
+            <h2 class="text-2xl font-bold text-white mb-1 flex items-center gap-2">
+              <svg class="w-6 h-6 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path>
+              </svg>
+              Roadmap
+            </h2>
+            <p class="text-gray-400 text-sm">What's coming next</p>
+          </div>
+
+          <div class="space-y-6">
+            <!-- Q4 2025 -->
+            <div>
+              <h3 class="text-lg font-semibold text-primary-400 mb-3">Q4 2025</h3>
+              <ul class="space-y-2 text-gray-300 text-sm">
+                <li class="flex items-start gap-2">
+                  <span class="text-green-400 mt-1">✓</span>
+                  <span><strong class="text-white">Landing Page:</strong> Complete (Shipped in v1.1.0)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-yellow-400 mt-1">⏳</span>
+                  <span><strong class="text-white">Customer Dashboard:</strong> Manage API keys, view usage analytics</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-yellow-400 mt-1">⏳</span>
+                  <span><strong class="text-white">Webhook Support:</strong> Get notified of refinement completions</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gray-500 mt-1">○</span>
+                  <span><strong class="text-white">Team Management:</strong> Share API keys across team members (Enterprise)</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Q1 2026 -->
+            <div>
+              <h3 class="text-lg font-semibold text-primary-400 mb-3">Q1 2026</h3>
+              <ul class="space-y-2 text-gray-300 text-sm">
+                <li class="flex items-start gap-2">
+                  <span class="text-gray-500 mt-1">○</span>
+                  <span><strong class="text-white">VS Code Extension:</strong> Refine schemas directly in your editor</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gray-500 mt-1">○</span>
+                  <span><strong class="text-white">Schema Registry:</strong> Store and version your schemas in the cloud</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gray-500 mt-1">○</span>
+                  <span><strong class="text-white">Batch Processing:</strong> Refine multiple schemas at once</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gray-500 mt-1">○</span>
+                  <span><strong class="text-white">GraphQL Support:</strong> Generate GraphQL schemas from JSON</span>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Q2 2026 -->
+            <div>
+              <h3 class="text-lg font-semibold text-primary-400 mb-3">Q2 2026</h3>
+              <ul class="space-y-2 text-gray-300 text-sm">
+                <li class="flex items-start gap-2">
+                  <span class="text-gray-500 mt-1">○</span>
+                  <span><strong class="text-white">SOC 2 Type II:</strong> Complete security audit and certification</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gray-500 mt-1">○</span>
+                  <span><strong class="text-white">Custom AI Models:</strong> Fine-tune models for your domain (Enterprise)</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-gray-500 mt-1">○</span>
+                  <span><strong class="text-white">On-Premise Deployment:</strong> Self-hosted option for Enterprise</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Feature Requests -->
+          <div class="mt-6 pt-6 border-t border-gray-700">
+            <p class="text-gray-300 text-sm">
+              Have a feature request? Email us at
+              <a href="mailto:feedback@zodforge.dev" class="text-primary-400 hover:underline">feedback@zodforge.dev</a>
+              or open an issue on
+              <a href="https://github.com/MerlijnW70/zodforge/issues" target="_blank" class="text-primary-400 hover:underline">GitHub</a>
+            </p>
+          </div>
+        </div>
+
+        <!-- Subscribe to Updates -->
+        <div class="card text-center">
+          <h2 class="text-2xl font-bold text-white mb-3">Stay Updated</h2>
+          <p class="text-gray-300 mb-6">
+            Get notified when we ship new features, improvements, and security updates
+          </p>
+          <div class="flex flex-col sm:flex-row gap-3 justify-center">
+            <a href="/#pricing" class="btn-primary">
+              Subscribe to Pro
+            </a>
+            <a href="https://github.com/MerlijnW70/zodforge" target="_blank" class="btn-secondary">
+              Watch on GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="mt-12 card bg-gray-800/30">
+        <h3 class="text-lg font-semibold text-white mb-3">Legend</h3>
+        <div class="grid md:grid-cols-2 gap-4 text-sm">
+          <div class="flex items-center gap-2">
+            <span class="text-green-400">✓</span>
+            <span class="text-gray-300">Shipped</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-yellow-400">⏳</span>
+            <span class="text-gray-300">In Progress</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-gray-500">○</span>
+            <span class="text-gray-300">Planned</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 bg-primary-600 text-white rounded text-xs">Latest</span>
+            <span class="text-gray-300">Current Version</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose h2 {
+    margin-top: 2rem;
+  }
+  .prose h3 {
+    margin-top: 1.5rem;
+  }
+</style>

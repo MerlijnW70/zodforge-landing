@@ -1,0 +1,385 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Security - ZodForge Cloud"
+  description="Security practices, compliance, and infrastructure protection at ZodForge Cloud. Learn how we keep your data safe."
+>
+  <main class="min-h-screen py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <!-- Header -->
+      <div class="mb-12">
+        <a href="/" class="text-primary-400 hover:underline mb-4 inline-block">← Back to Home</a>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">Security at ZodForge</h1>
+        <p class="text-xl text-gray-300">
+          Security is our top priority. We implement industry-leading practices to protect your data and ensure service reliability.
+        </p>
+      </div>
+
+      <!-- Security Badge -->
+      <div class="bg-gradient-to-r from-primary-600/20 to-cyan-600/20 border border-primary-600/30 rounded-lg p-6 mb-12">
+        <div class="flex items-center gap-4">
+          <svg class="w-12 h-12 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+            ></path>
+          </svg>
+          <div>
+            <h2 class="text-2xl font-bold text-white mb-1">Enterprise-Grade Security</h2>
+            <p class="text-gray-300">10-layer defense in depth architecture • 99.99% uptime • SOC 2 ready</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none">
+        <!-- Data Encryption -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">🔐 Data Encryption</h2>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-2 text-white">In Transit</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2">
+                <li>TLS 1.3 encryption (HTTPS only)</li>
+                <li>Perfect Forward Secrecy (PFS)</li>
+                <li>Strong cipher suites (AES-256-GCM)</li>
+                <li>HSTS enabled (Strict-Transport-Security)</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-2 text-white">At Rest</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2">
+                <li>AES-256 database encryption (Supabase)</li>
+                <li>API keys hashed with bcrypt (cost 12)</li>
+                <li>Encrypted backups</li>
+                <li>No plaintext secrets in code</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Infrastructure -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">☁️ Infrastructure Security</h2>
+
+          <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6 mb-6">
+            <h3 class="text-xl font-semibold mb-4 text-white">Hosting & Providers</h3>
+            <ul class="space-y-3 text-gray-300">
+              <li>
+                <strong class="text-white">Railway:</strong> API hosting with isolated containers, automatic scaling,
+                and DDoS protection
+              </li>
+              <li>
+                <strong class="text-white">Vercel:</strong> Landing page on global edge network with instant failover
+              </li>
+              <li>
+                <strong class="text-white">Supabase:</strong> PostgreSQL database with row-level security and automated backups
+              </li>
+              <li>
+                <strong class="text-white">Stripe:</strong> PCI DSS Level 1 certified payment processing (we never see card numbers)
+              </li>
+            </ul>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Network Security</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li><strong class="text-white">DDoS Protection:</strong> Cloudflare-level protection on all endpoints</li>
+            <li><strong class="text-white">Rate Limiting:</strong> Tiered limits to prevent abuse (10-100 req/hour)</li>
+            <li><strong class="text-white">IP Allowlisting:</strong> Optional for Enterprise customers</li>
+            <li><strong class="text-white">WAF (Web Application Firewall):</strong> Blocks common attack vectors</li>
+          </ul>
+        </section>
+
+        <!-- API Security -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">🔑 API Security</h2>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Authentication</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+            <li>Bearer token authentication (API keys)</li>
+            <li>Keys are 64-character cryptographically random strings</li>
+            <li>Keys are hashed before storage (bcrypt, never reversible)</li>
+            <li>Rotate keys anytime from dashboard</li>
+            <li>Keys are never logged or exposed in error messages</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Request Validation</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+            <li>Zod schema validation on all inputs</li>
+            <li>Sanitization to prevent injection attacks</li>
+            <li>Content-Type enforcement (JSON only)</li>
+            <li>Request size limits (max 1MB payload)</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Data Handling</h3>
+          <div class="bg-primary-600/10 border border-primary-600/30 rounded-lg p-6">
+            <p class="text-gray-300 leading-relaxed mb-4">
+              <strong class="text-white">Zero Data Retention:</strong> Your schemas are processed in real-time and
+              <strong class="text-white">never stored</strong> beyond temporary processing.
+            </p>
+            <ul class="list-disc list-inside text-gray-300 space-y-2">
+              <li>API requests are logged for 7 days (debugging only), then permanently deleted</li>
+              <li>Logs contain only metadata (timestamps, status codes), not schema content</li>
+              <li>Third-party AI providers (OpenAI, Anthropic) do not train on your data (per their enterprise agreements)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Access Control -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">👥 Access Control</h2>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Internal Access</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+            <li><strong class="text-white">Principle of Least Privilege:</strong> Employees only access systems they need</li>
+            <li><strong class="text-white">Multi-Factor Authentication (MFA):</strong> Required for all admin accounts</li>
+            <li><strong class="text-white">SSH Key Authentication:</strong> No password-based server access</li>
+            <li><strong class="text-white">Audit Logs:</strong> All access logged and monitored</li>
+            <li><strong class="text-white">Background Checks:</strong> For employees with production access</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Customer Access</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li>Email-based authentication (magic links or OAuth)</li>
+            <li>API key management dashboard</li>
+            <li>Usage analytics and monitoring</li>
+            <li>Team management for Enterprise (role-based access control)</li>
+          </ul>
+        </section>
+
+        <!-- Monitoring -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">📊 Monitoring & Incident Response</h2>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">24/7 Monitoring</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+            <li>Real-time uptime monitoring (UptimeRobot + StatusPage)</li>
+            <li>Error tracking and alerting (Sentry)</li>
+            <li>Performance metrics (response times, throughput)</li>
+            <li>Security event logging (failed auth attempts, anomalies)</li>
+            <li>Automated health checks every 30 seconds</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Incident Response</h3>
+          <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
+            <p class="text-gray-300 leading-relaxed mb-4">
+              We have a documented incident response plan:
+            </p>
+            <ol class="list-decimal list-inside text-gray-300 space-y-2">
+              <li><strong class="text-white">Detection:</strong> Automated alerts trigger within 1 minute</li>
+              <li><strong class="text-white">Assessment:</strong> On-call engineer investigates (15 min SLA)</li>
+              <li><strong class="text-white">Containment:</strong> Isolate affected systems, prevent spread</li>
+              <li><strong class="text-white">Communication:</strong> Status page updated, customers notified</li>
+              <li><strong class="text-white">Resolution:</strong> Fix issue, restore service</li>
+              <li><strong class="text-white">Post-Mortem:</strong> Document root cause, implement prevention</li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- Compliance -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">✅ Compliance & Certifications</h2>
+
+          <div class="grid md:grid-cols-2 gap-6 mb-6">
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-3 text-white flex items-center gap-2">
+                <span class="text-2xl">🇪🇺</span> GDPR Compliant
+              </h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Data Processing Agreements (DPA) available</li>
+                <li>EU data residency option (Enterprise)</li>
+                <li>Right to access, rectify, and delete data</li>
+                <li>30-day data breach notification</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-3 text-white flex items-center gap-2">
+                <span class="text-2xl">🇺🇸</span> CCPA Compliant
+              </h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Transparent data collection practices</li>
+                <li>Do Not Sell My Data honored</li>
+                <li>California resident rights respected</li>
+                <li>Privacy policy clearly disclosed</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">In Progress</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2">
+            <li><strong class="text-white">SOC 2 Type II:</strong> Audit in progress (expected Q2 2026)</li>
+            <li><strong class="text-white">ISO 27001:</strong> Information security management certification (roadmap)</li>
+            <li><strong class="text-white">HIPAA:</strong> Healthcare compliance for medical data (upon customer request)</li>
+          </ul>
+        </section>
+
+        <!-- Vulnerability Management -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">🛡️ Vulnerability Management</h2>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Security Testing</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+            <li><strong class="text-white">Automated Scanning:</strong> Weekly Snyk scans for dependency vulnerabilities</li>
+            <li><strong class="text-white">Penetration Testing:</strong> Annual third-party pentests</li>
+            <li><strong class="text-white">Code Review:</strong> Security-focused reviews for all changes</li>
+            <li><strong class="text-white">OWASP Top 10:</strong> Protected against common web vulnerabilities</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Patch Management</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+            <li>Critical security patches deployed within 24 hours</li>
+            <li>Dependencies updated weekly (automated Dependabot)</li>
+            <li>Zero-downtime deployments for patches</li>
+          </ul>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Bug Bounty Program</h3>
+          <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
+            <p class="text-gray-300 leading-relaxed mb-4">
+              <strong class="text-white">Coming Soon:</strong> We're launching a bug bounty program to reward
+              security researchers who responsibly disclose vulnerabilities.
+            </p>
+            <p class="text-gray-300 leading-relaxed">
+              For now, report security issues to:
+              <a href="mailto:security@zodforge.dev" class="text-primary-400 hover:underline font-mono">
+                security@zodforge.dev
+              </a>
+            </p>
+          </div>
+        </section>
+
+        <!-- Third-Party Security -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">🤝 Third-Party Security</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            We carefully vet all third-party services and ensure they meet our security standards:
+          </p>
+
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-700 text-gray-300">
+              <thead>
+                <tr class="bg-gray-800">
+                  <th class="border border-gray-700 px-4 py-2 text-left">Service</th>
+                  <th class="border border-gray-700 px-4 py-2 text-left">Purpose</th>
+                  <th class="border border-gray-700 px-4 py-2 text-left">Certifications</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="border border-gray-700 px-4 py-2"><strong class="text-white">Stripe</strong></td>
+                  <td class="border border-gray-700 px-4 py-2">Payment processing</td>
+                  <td class="border border-gray-700 px-4 py-2">PCI DSS Level 1, SOC 2</td>
+                </tr>
+                <tr class="bg-gray-800/50">
+                  <td class="border border-gray-700 px-4 py-2"><strong class="text-white">Supabase</strong></td>
+                  <td class="border border-gray-700 px-4 py-2">Database hosting</td>
+                  <td class="border border-gray-700 px-4 py-2">SOC 2 Type II, GDPR</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-700 px-4 py-2"><strong class="text-white">OpenAI</strong></td>
+                  <td class="border border-gray-700 px-4 py-2">AI refinement</td>
+                  <td class="border border-gray-700 px-4 py-2">SOC 2, no training on data</td>
+                </tr>
+                <tr class="bg-gray-800/50">
+                  <td class="border border-gray-700 px-4 py-2"><strong class="text-white">Anthropic</strong></td>
+                  <td class="border border-gray-700 px-4 py-2">AI fallback</td>
+                  <td class="border border-gray-700 px-4 py-2">SOC 2, no training on data</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">💡 Security Best Practices for Users</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">Help us keep your account secure:</p>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-3 text-white text-green-400">✅ Do</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Store API keys in environment variables</li>
+                <li>Use separate keys for dev/staging/prod</li>
+                <li>Rotate keys regularly (every 90 days)</li>
+                <li>Enable MFA on your account</li>
+                <li>Monitor usage for anomalies</li>
+                <li>Use HTTPS in all API requests</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-3 text-white text-red-400">❌ Don't</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Commit API keys to version control</li>
+                <li>Share API keys with others</li>
+                <li>Use the same key across projects</li>
+                <li>Expose keys in client-side code</li>
+                <li>Ignore rate limit errors</li>
+                <li>Send unencrypted requests</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">📧 Security Contact</h2>
+          <div class="bg-gray-800/50 border border-gray-700 rounded-lg p-6">
+            <p class="text-gray-300 leading-relaxed mb-4">
+              Found a security vulnerability? Please report it responsibly:
+            </p>
+            <p class="text-gray-300 mb-4">
+              <strong class="text-white">Email:</strong>
+              <a href="mailto:security@zodforge.dev" class="text-primary-400 hover:underline font-mono">
+                security@zodforge.dev
+              </a>
+            </p>
+            <p class="text-gray-300 text-sm">
+              We take all reports seriously and will respond within 24 hours. Please include:
+            </p>
+            <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm mt-2">
+              <li>Description of the vulnerability</li>
+              <li>Steps to reproduce</li>
+              <li>Potential impact</li>
+              <li>Your contact information (for follow-up)</li>
+            </ul>
+            <p class="text-gray-400 text-sm mt-4">
+              Please do not publicly disclose until we've had a chance to address the issue.
+            </p>
+          </div>
+        </section>
+
+        <!-- Transparency -->
+        <div class="bg-primary-600/10 border border-primary-600/30 rounded-lg p-6">
+          <h2 class="text-2xl font-bold mb-3 text-white">🌟 Commitment to Transparency</h2>
+          <p class="text-gray-300 leading-relaxed">
+            Security is a continuous journey. We publish quarterly security updates and maintain a public
+            <a href="/changelog" class="text-primary-400 hover:underline">changelog</a> of security improvements.
+            Questions? Email <a href="mailto:security@zodforge.dev" class="text-primary-400 hover:underline">security@zodforge.dev</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose h2 {
+    margin-top: 2rem;
+  }
+  .prose h3 {
+    margin-top: 1.5rem;
+  }
+  .prose a {
+    transition: color 0.2s;
+  }
+  table {
+    font-size: 0.9rem;
+  }
+</style>

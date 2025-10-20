@@ -1,0 +1,535 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const apiUrl = 'https://web-production-f15d.up.railway.app';
+---
+
+<BaseLayout
+  title="API Documentation - ZodForge Cloud"
+  description="Complete API documentation for ZodForge Cloud. Learn how to integrate AI-powered schema refinement into your workflow."
+>
+  <main class="min-h-screen py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <!-- Header -->
+      <div class="mb-12">
+        <a href="/" class="text-primary-400 hover:underline mb-4 inline-block">← Back to Home</a>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4">API Documentation</h1>
+        <p class="text-xl text-gray-300">
+          Complete guide to using the ZodForge Cloud API for AI-powered schema refinement
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="grid md:grid-cols-4 gap-4 mb-12">
+        <a href="#getting-started" class="card hover:border-primary-600/50 transition-colors text-center">
+          <div class="text-3xl mb-2">🚀</div>
+          <div class="font-semibold text-white">Getting Started</div>
+        </a>
+        <a href="#authentication" class="card hover:border-primary-600/50 transition-colors text-center">
+          <div class="text-3xl mb-2">🔑</div>
+          <div class="font-semibold text-white">Authentication</div>
+        </a>
+        <a href="#endpoints" class="card hover:border-primary-600/50 transition-colors text-center">
+          <div class="text-3xl mb-2">📡</div>
+          <div class="font-semibold text-white">API Endpoints</div>
+        </a>
+        <a href="#examples" class="card hover:border-primary-600/50 transition-colors text-center">
+          <div class="text-3xl mb-2">💻</div>
+          <div class="font-semibold text-white">Code Examples</div>
+        </a>
+      </div>
+
+      <div class="prose prose-invert prose-lg max-w-none">
+        <!-- Getting Started -->
+        <section id="getting-started" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">🚀 Getting Started</h2>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">1. Get Your API Key</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Sign up for a paid plan at <a href="/#pricing" class="text-primary-400 hover:underline">zodforge.dev</a>
+            to receive your API key via email within minutes.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">2. Base URL</h3>
+          <div class="bg-gray-900 rounded-lg p-4 mb-6">
+            <code class="text-primary-400 font-mono">{apiUrl}</code>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">3. Make Your First Request</h3>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+            <pre class="text-sm text-gray-300"><code>{`curl -X POST ${apiUrl}/api/v1/refine \\
+  -H "Authorization: Bearer YOUR_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "schema": {
+      "code": "z.object({ email: z.string() })",
+      "typeName": "User",
+      "fields": { "email": "z.string()" }
+    },
+    "samples": [{ "email": "test@example.com" }]
+  }'`}</code></pre>
+          </div>
+        </section>
+
+        <!-- Authentication -->
+        <section id="authentication" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">🔑 Authentication</h2>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            All API requests require authentication using Bearer tokens (your API key).
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Authorization Header</h3>
+          <div class="bg-gray-900 rounded-lg p-4 mb-6">
+            <code class="text-gray-300 font-mono">Authorization: Bearer zf_your_api_key_here</code>
+          </div>
+
+          <div class="bg-yellow-500/10 border border-yellow-500/30 rounded-lg p-6 mb-6">
+            <h4 class="text-lg font-semibold text-yellow-400 mb-2">⚠️ Security Best Practices</h4>
+            <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+              <li>Never commit API keys to version control</li>
+              <li>Store keys in environment variables (<code class="font-mono bg-gray-800 px-1">ZODFORGE_API_KEY</code>)</li>
+              <li>Use separate keys for development, staging, and production</li>
+              <li>Rotate keys regularly (every 90 days recommended)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- API Endpoints -->
+        <section id="endpoints" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">📡 API Endpoints</h2>
+
+          <!-- Health Check -->
+          <div class="card mb-8">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="px-3 py-1 bg-green-600 text-white text-sm font-mono rounded">GET</span>
+              <h3 class="text-2xl font-bold text-white">/api/v1/health</h3>
+            </div>
+            <p class="text-gray-300 mb-4">Check API status and service health. No authentication required.</p>
+
+            <h4 class="text-lg font-semibold text-white mb-2">Request</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-4">
+              <pre class="text-sm text-gray-300"><code>curl {apiUrl}/api/v1/health</code></pre>
+            </div>
+
+            <h4 class="text-lg font-semibold text-white mb-2">Response (200)</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-sm text-gray-300"><code>{`{
+  "status": "healthy",
+  "version": "1.0.0",
+  "uptime": 123456,
+  "timestamp": "2025-10-20T18:00:00.000Z",
+  "services": {
+    "openai": "up",
+    "anthropic": "up"
+  }
+}`}</code></pre>
+            </div>
+          </div>
+
+          <!-- Refine Endpoint -->
+          <div class="card mb-8">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="px-3 py-1 bg-primary-600 text-white text-sm font-mono rounded">POST</span>
+              <h3 class="text-2xl font-bold text-white">/api/v1/refine</h3>
+            </div>
+            <p class="text-gray-300 mb-4">
+              AI-powered schema refinement. Analyzes your Zod schema and sample data to suggest intelligent improvements.
+            </p>
+
+            <h4 class="text-lg font-semibold text-white mb-2">Request Body</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-4">
+              <pre class="text-sm text-gray-300"><code>{`{
+  "schema": {
+    "code": "z.object({ email: z.string(), age: z.number() })",
+    "typeName": "User",
+    "fields": {
+      "email": "z.string()",
+      "age": "z.number()"
+    }
+  },
+  "samples": [
+    { "email": "alice@example.com", "age": 28 },
+    { "email": "bob@test.org", "age": 35 }
+  ]
+}`}</code></pre>
+            </div>
+
+            <h4 class="text-lg font-semibold text-white mb-2">Parameters</h4>
+            <div class="overflow-x-auto mb-4">
+              <table class="w-full border-collapse border border-gray-700">
+                <thead>
+                  <tr class="bg-gray-800">
+                    <th class="border border-gray-700 px-4 py-2 text-left text-white">Field</th>
+                    <th class="border border-gray-700 px-4 py-2 text-left text-white">Type</th>
+                    <th class="border border-gray-700 px-4 py-2 text-left text-white">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="text-gray-300 text-sm">
+                  <tr>
+                    <td class="border border-gray-700 px-4 py-2"><code class="font-mono">schema.code</code></td>
+                    <td class="border border-gray-700 px-4 py-2">string</td>
+                    <td class="border border-gray-700 px-4 py-2">Original Zod schema code</td>
+                  </tr>
+                  <tr class="bg-gray-800/50">
+                    <td class="border border-gray-700 px-4 py-2"><code class="font-mono">schema.typeName</code></td>
+                    <td class="border border-gray-700 px-4 py-2">string</td>
+                    <td class="border border-gray-700 px-4 py-2">Name of the schema (e.g., "User")</td>
+                  </tr>
+                  <tr>
+                    <td class="border border-gray-700 px-4 py-2"><code class="font-mono">schema.fields</code></td>
+                    <td class="border border-gray-700 px-4 py-2">object</td>
+                    <td class="border border-gray-700 px-4 py-2">Field name → Zod definition mapping</td>
+                  </tr>
+                  <tr class="bg-gray-800/50">
+                    <td class="border border-gray-700 px-4 py-2"><code class="font-mono">samples</code></td>
+                    <td class="border border-gray-700 px-4 py-2">array</td>
+                    <td class="border border-gray-700 px-4 py-2">Sample data objects (1-10 recommended)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h4 class="text-lg font-semibold text-white mb-2">Response (200)</h4>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-4">
+              <pre class="text-sm text-gray-300"><code>{`{
+  "success": true,
+  "refinedSchema": {
+    "code": "z.object({\\n  email: z.string().email().toLowerCase(),\\n  age: z.number().int().min(0).max(150)\\n})",
+    "improvements": [
+      {
+        "field": "email",
+        "before": "z.string()",
+        "after": "z.string().email().toLowerCase()",
+        "reason": "Detected email pattern. Added validation and normalization.",
+        "confidence": 0.98
+      },
+      {
+        "field": "age",
+        "before": "z.number()",
+        "after": "z.number().int().min(0).max(150)",
+        "reason": "Age should be realistic integer. Added constraints.",
+        "confidence": 0.95
+      }
+    ],
+    "confidence": 0.96
+  },
+  "suggestions": [
+    "Consider adding .trim() to email for better normalization",
+    "You might want .describe() for better documentation"
+  ],
+  "metadata": {
+    "creditsUsed": 1,
+    "creditsRemaining": 4999,
+    "processingTime": 1247,
+    "aiProvider": "openai",
+    "modelUsed": "gpt-4-turbo"
+  }
+}`}</code></pre>
+            </div>
+
+            <h4 class="text-lg font-semibold text-white mb-2">Error Responses</h4>
+            <div class="space-y-4">
+              <div>
+                <strong class="text-red-400">401 Unauthorized</strong>
+                <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mt-2">
+                  <pre class="text-sm text-gray-300"><code>{`{
+  "error": "Unauthorized",
+  "message": "Invalid or missing API key"
+}`}</code></pre>
+                </div>
+              </div>
+
+              <div>
+                <strong class="text-red-400">400 Bad Request</strong>
+                <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mt-2">
+                  <pre class="text-sm text-gray-300"><code>{`{
+  "error": "Validation Error",
+  "message": "Invalid request body",
+  "details": [
+    {
+      "field": "schema.code",
+      "issue": "Required field missing"
+    }
+  ]
+}`}</code></pre>
+                </div>
+              </div>
+
+              <div>
+                <strong class="text-red-400">429 Too Many Requests</strong>
+                <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mt-2">
+                  <pre class="text-sm text-gray-300"><code>{`{
+  "error": "Rate Limit Exceeded",
+  "message": "Too many requests. Please try again later.",
+  "retryAfter": 60
+}`}</code></pre>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Code Examples -->
+        <section id="examples" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">💻 Code Examples</h2>
+
+          <!-- cURL -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold mb-3 text-white">cURL</h3>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-sm text-gray-300"><code>{`curl -X POST ${apiUrl}/api/v1/refine \\
+  -H "Authorization: Bearer \${ZODFORGE_API_KEY}" \\
+  -H "Content-Type: application/json" \\
+  -d @request.json`}</code></pre>
+            </div>
+          </div>
+
+          <!-- Node.js -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold mb-3 text-white">Node.js / TypeScript</h3>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-sm text-gray-300"><code>{`import fetch from 'node-fetch';
+
+const API_KEY = process.env.ZODFORGE_API_KEY;
+const API_URL = '${apiUrl}/api/v1/refine';
+
+async function refineSchema(schema, samples) {
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Authorization': \`Bearer \${API_KEY}\`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ schema, samples }),
+  });
+
+  if (!response.ok) {
+    throw new Error(\`API error: \${response.status}\`);
+  }
+
+  return await response.json();
+}
+
+// Usage
+const result = await refineSchema(
+  {
+    code: 'z.object({ email: z.string() })',
+    typeName: 'User',
+    fields: { email: 'z.string()' }
+  },
+  [{ email: 'test@example.com' }]
+);
+
+console.log(result.refinedSchema.code);`}</code></pre>
+            </div>
+          </div>
+
+          <!-- Python -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold mb-3 text-white">Python</h3>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-sm text-gray-300"><code>{`import os
+import requests
+
+API_KEY = os.getenv('ZODFORGE_API_KEY')
+API_URL = '${apiUrl}/api/v1/refine'
+
+def refine_schema(schema, samples):
+    response = requests.post(
+        API_URL,
+        headers={
+            'Authorization': f'Bearer {API_KEY}',
+            'Content-Type': 'application/json'
+        },
+        json={'schema': schema, 'samples': samples}
+    )
+    response.raise_for_status()
+    return response.json()
+
+# Usage
+result = refine_schema(
+    schema={
+        'code': 'z.object({ email: z.string() })',
+        'typeName': 'User',
+        'fields': {'email': 'z.string()'}
+    },
+    samples=[{'email': 'test@example.com'}]
+)
+
+print(result['refinedSchema']['code'])`}</code></pre>
+            </div>
+          </div>
+
+          <!-- CLI Integration -->
+          <div class="mb-8">
+            <h3 class="text-2xl font-semibold mb-3 text-white">ZodForge CLI</h3>
+            <p class="text-gray-300 mb-4">
+              The easiest way to use ZodForge Cloud is through the CLI:
+            </p>
+            <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto">
+              <pre class="text-sm text-gray-300"><code>{`# Install CLI
+npm install -g zodforge
+
+# Set API key
+export ZODFORGE_API_KEY=your_key_here
+
+# Generate schema with cloud refinement
+zodforge generate input.json --cloud
+
+# Or from URL
+zodforge generate https://api.example.com/data --cloud`}</code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- Rate Limits -->
+        <section id="rate-limits" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">⏱️ Rate Limits</h2>
+          <div class="overflow-x-auto">
+            <table class="w-full border-collapse border border-gray-700">
+              <thead>
+                <tr class="bg-gray-800">
+                  <th class="border border-gray-700 px-4 py-2 text-left text-white">Plan</th>
+                  <th class="border border-gray-700 px-4 py-2 text-left text-white">Monthly Limit</th>
+                  <th class="border border-gray-700 px-4 py-2 text-left text-white">Hourly Limit</th>
+                  <th class="border border-gray-700 px-4 py-2 text-left text-white">Response</th>
+                </tr>
+              </thead>
+              <tbody class="text-gray-300 text-sm">
+                <tr>
+                  <td class="border border-gray-700 px-4 py-2"><strong class="text-white">Free</strong></td>
+                  <td class="border border-gray-700 px-4 py-2">100 requests</td>
+                  <td class="border border-gray-700 px-4 py-2">10 requests</td>
+                  <td class="border border-gray-700 px-4 py-2">429 when exceeded</td>
+                </tr>
+                <tr class="bg-gray-800/50">
+                  <td class="border border-gray-700 px-4 py-2"><strong class="text-white">Pro</strong></td>
+                  <td class="border border-gray-700 px-4 py-2">5,000 requests</td>
+                  <td class="border border-gray-700 px-4 py-2">100 requests</td>
+                  <td class="border border-gray-700 px-4 py-2">429 when exceeded</td>
+                </tr>
+                <tr>
+                  <td class="border border-gray-700 px-4 py-2"><strong class="text-white">Enterprise</strong></td>
+                  <td class="border border-gray-700 px-4 py-2">Unlimited</td>
+                  <td class="border border-gray-700 px-4 py-2">Custom</td>
+                  <td class="border border-gray-700 px-4 py-2">Fair use policy</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-6 mt-6">
+            <h4 class="text-lg font-semibold text-blue-400 mb-2">💡 Tip: Rate Limit Headers</h4>
+            <p class="text-gray-300 text-sm">
+              Check response headers for rate limit info:
+            </p>
+            <ul class="list-disc list-inside text-gray-300 space-y-1 text-sm mt-2">
+              <li><code class="font-mono bg-gray-800 px-1">X-RateLimit-Limit</code> - Your hourly limit</li>
+              <li><code class="font-mono bg-gray-800 px-1">X-RateLimit-Remaining</code> - Requests remaining</li>
+              <li><code class="font-mono bg-gray-800 px-1">X-RateLimit-Reset</code> - When limit resets (Unix timestamp)</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- Best Practices -->
+        <section id="best-practices" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">✨ Best Practices</h2>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-3 text-white">Optimal Sample Data</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Provide 3-10 diverse samples</li>
+                <li>Include edge cases (empty, null, extreme values)</li>
+                <li>Use real-world data when possible</li>
+                <li>Ensure samples match schema structure</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-3 text-white">Error Handling</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Always check response status codes</li>
+                <li>Implement exponential backoff for 429 errors</li>
+                <li>Log failed requests for debugging</li>
+                <li>Have fallback for API unavailability</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-3 text-white">Performance</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Cache refined schemas when possible</li>
+                <li>Batch similar schemas together</li>
+                <li>Set reasonable timeouts (30s recommended)</li>
+                <li>Monitor API latency and credits</li>
+              </ul>
+            </div>
+
+            <div class="card">
+              <h3 class="text-xl font-semibold mb-3 text-white">Security</h3>
+              <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                <li>Never expose API keys in client code</li>
+                <li>Use HTTPS for all requests</li>
+                <li>Rotate keys every 90 days</li>
+                <li>Monitor usage for anomalies</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Support -->
+        <section id="support" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">💬 Need Help?</h2>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="card text-center">
+              <div class="text-4xl mb-3">📧</div>
+              <h3 class="text-lg font-semibold text-white mb-2">Email Support</h3>
+              <p class="text-gray-300 text-sm mb-3">Get help from our team</p>
+              <a href="mailto:support@zodforge.dev" class="text-primary-400 hover:underline text-sm">
+                support@zodforge.dev
+              </a>
+            </div>
+
+            <div class="card text-center">
+              <div class="text-4xl mb-3">💬</div>
+              <h3 class="text-lg font-semibold text-white mb-2">Community</h3>
+              <p class="text-gray-300 text-sm mb-3">Join our Discord</p>
+              <a href="https://discord.gg/zodforge" class="text-primary-400 hover:underline text-sm">
+                discord.gg/zodforge
+              </a>
+            </div>
+
+            <div class="card text-center">
+              <div class="text-4xl mb-3">🐙</div>
+              <h3 class="text-lg font-semibold text-white mb-2">GitHub</h3>
+              <p class="text-gray-300 text-sm mb-3">Report issues or contribute</p>
+              <a href="https://github.com/MerlijnW70/zodforge" target="_blank" class="text-primary-400 hover:underline text-sm">
+                github.com/zodforge
+              </a>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .prose h2 {
+    margin-top: 2rem;
+    scroll-margin-top: 2rem;
+  }
+  .prose h3 {
+    margin-top: 1.5rem;
+  }
+  .prose a {
+    transition: color 0.2s;
+  }
+  table {
+    font-size: 0.875rem;
+  }
+  code {
+    font-size: 0.875em;
+  }
+</style>

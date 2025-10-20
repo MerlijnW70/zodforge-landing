@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" fill="none">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="64" fill="#0ea5e9"/>
+
+  <!-- ZF Monogram -->
+  <g transform="translate(28, 35)">
+    <!-- Z -->
+    <path d="M 10 10 L 35 10 L 10 50 L 35 50" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+
+    <!-- F -->
+    <path d="M 45 10 L 45 50 M 45 10 L 65 10 M 45 30 L 60 30" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+
+  <!-- Subtle forge hammer icon -->
+  <circle cx="95" cy="95" r="8" fill="white" opacity="0.3"/>
+</svg>
