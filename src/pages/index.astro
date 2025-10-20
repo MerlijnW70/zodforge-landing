@@ -4,19 +4,25 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import TrustBadges from '../components/TrustBadges.astro';
 import Features from '../components/Features.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
 import SocialProof from '../components/SocialProof.astro';
 import Pricing from '../components/Pricing.astro';
-import EmailCapture from '../components/EmailCapture.astro';
+import FAQ from '../components/FAQ.astro';
 import ChangelogPreview from '../components/ChangelogPreview.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import StickyCTA from '../components/StickyCTA.astro';
 ---
 
 <BaseLayout>
   <main>
+    <StickyCTA />
     <Hero />
     <TrustBadges />
     <Features />
+    <ComparisonTable />
     <SocialProof />
     <Pricing />
+    <FAQ />
     <ChangelogPreview />
     <EmailCapture />
 

@@ -1,0 +1,162 @@
+---
+const comparisons = [
+  {
+    feature: "Time to Create Schema",
+    manual: "10-30 minutes",
+    others: "5-10 minutes",
+    zodforge: "< 2 seconds",
+    zodforgeHighlight: true
+  },
+  {
+    feature: "AI-Powered Refinement",
+    manual: "❌",
+    others: "⚠️ Basic",
+    zodforge: "✅ GPT-4 + Claude",
+    zodforgeHighlight: true
+  },
+  {
+    feature: "Automatic Failover",
+    manual: "❌",
+    others: "❌",
+    zodforge: "✅ 99.99% uptime",
+    zodforgeHighlight: true
+  },
+  {
+    feature: "Type Safety (TypeScript)",
+    manual: "✅ Manual",
+    others: "✅",
+    zodforge: "✅ Automated",
+    zodforgeHighlight: false
+  },
+  {
+    feature: "Validation Constraints",
+    manual: "⚠️ Miss edge cases",
+    others: "⚠️ Basic rules",
+    zodforge: "✅ Smart detection",
+    zodforgeHighlight: true
+  },
+  {
+    feature: "Error Handling",
+    manual: "DIY",
+    others: "Templates",
+    zodforge: "✅ Production-ready",
+    zodforgeHighlight: true
+  },
+  {
+    feature: "Learning Curve",
+    manual: "Weeks",
+    others: "Days",
+    zodforge: "Minutes",
+    zodforgeHighlight: true
+  },
+  {
+    feature: "Monthly Cost",
+    manual: "$0 (time = money)",
+    others: "$29-99/mo",
+    zodforge: "Free - $99/mo",
+    zodforgeHighlight: false
+  },
+  {
+    feature: "API Integration",
+    manual: "❌",
+    others: "⚠️ Limited",
+    zodforge: "✅ Full REST API",
+    zodforgeHighlight: true
+  },
+  {
+    feature: "Support Quality",
+    manual: "Stack Overflow",
+    others: "Email only",
+    zodforge: "Email + Slack",
+    zodforgeHighlight: false
+  }
+];
+---
+
+<section id="comparison" class="py-24 px-4">
+  <div class="max-w-7xl mx-auto">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">
+        Why Choose <span class="gradient-text">ZodForge Cloud</span>?
+      </h2>
+      <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+        See how we stack up against manual schema writing and other validation tools
+      </p>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="overflow-x-auto">
+      <table class="w-full border-collapse">
+        <thead>
+          <tr class="border-b-2 border-gray-700">
+            <th class="text-left py-4 px-4 text-gray-400 font-semibold">Feature</th>
+            <th class="text-center py-4 px-4 text-gray-400 font-semibold">Manual Writing</th>
+            <th class="text-center py-4 px-4 text-gray-400 font-semibold">Other Tools</th>
+            <th class="text-center py-4 px-4 text-primary-400 font-bold bg-primary-600/10 rounded-t-lg">
+              ZodForge Cloud
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {comparisons.map((row, index) => (
+            <tr class={`border-b border-gray-800 hover:bg-gray-900/50 transition-colors ${index % 2 === 0 ? 'bg-gray-900/30' : ''}`}>
+              <td class="py-4 px-4 font-medium text-white">{row.feature}</td>
+              <td class="py-4 px-4 text-center text-gray-400">{row.manual}</td>
+              <td class="py-4 px-4 text-center text-gray-400">{row.others}</td>
+              <td class={`py-4 px-4 text-center font-semibold ${row.zodforgeHighlight ? 'text-primary-400 bg-primary-600/10' : 'text-white bg-primary-600/5'}`}>
+                {row.zodforge}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ROI Callout -->
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      <div class="card text-center bg-gradient-to-br from-green-600/10 to-primary-600/10 border-green-600/30">
+        <div class="text-4xl font-bold text-green-400 mb-2">90%</div>
+        <div class="text-sm text-gray-300">Time Saved</div>
+        <div class="text-xs text-gray-500 mt-2">vs Manual Writing</div>
+      </div>
+      <div class="card text-center bg-gradient-to-br from-blue-600/10 to-primary-600/10 border-blue-600/30">
+        <div class="text-4xl font-bold text-blue-400 mb-2">10x</div>
+        <div class="text-sm text-gray-300">Faster Development</div>
+        <div class="text-xs text-gray-500 mt-2">Automated Schema Gen</div>
+      </div>
+      <div class="card text-center bg-gradient-to-br from-purple-600/10 to-primary-600/10 border-purple-600/30">
+        <div class="text-4xl font-bold text-purple-400 mb-2">99.99%</div>
+        <div class="text-sm text-gray-300">Uptime Guarantee</div>
+        <div class="text-xs text-gray-500 mt-2">Dual AI Fallback</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-12 text-center">
+      <a href="#pricing" class="btn-primary inline-block">
+        Start Free Trial
+        <svg class="inline w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+      <p class="text-sm text-gray-400 mt-4">No credit card required • 7-day free trial • Cancel anytime</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  table {
+    min-width: 700px;
+  }
+
+  @media (max-width: 768px) {
+    table {
+      font-size: 0.875rem;
+    }
+
+    th, td {
+      padding: 0.75rem 0.5rem;
+    }
+  }
+</style>

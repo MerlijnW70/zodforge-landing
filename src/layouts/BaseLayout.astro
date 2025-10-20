@@ -50,6 +50,36 @@ const {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Google Analytics (GA4) -->
+    {!import.meta.env.DEV && (
+      <>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-XXXXXXXXXX', {
+            page_path: window.location.pathname,
+          });
+        </script>
+      </>
+    )}
+
+    <!-- Crisp Live Chat -->
+    {!import.meta.env.DEV && (
+      <script type="text/javascript" is:inline>
+        window.$crisp=[];
+        window.CRISP_WEBSITE_ID="YOUR_CRISP_WEBSITE_ID";
+        (function(){
+          d=document;
+          s=d.createElement("script");
+          s.src="https://client.crisp.chat/l.js";
+          s.async=1;
+          d.getElementsByTagName("head")[0].appendChild(s);
+        })();
+      </script>
+    )}
   </head>
   <body>
     <slot />

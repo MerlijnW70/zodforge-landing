@@ -1,0 +1,119 @@
+---
+---
+
+<!-- Sticky CTA Bar (appears on scroll) -->
+<div id="sticky-cta" class="sticky-cta hidden">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+    <!-- Left: Message -->
+    <div class="hidden sm:block">
+      <span class="font-semibold text-white">Ready to transform your schemas?</span>
+      <span class="text-gray-400 ml-2">Start your 7-day free trial today</span>
+    </div>
+
+    <!-- Mobile: Short message -->
+    <div class="sm:hidden">
+      <span class="font-semibold text-white">Start Free Trial</span>
+    </div>
+
+    <!-- Right: CTA Buttons -->
+    <div class="flex items-center gap-3">
+      <a href="#pricing" class="btn-primary-sm">
+        Get Started
+        <svg class="inline w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
+      <button id="close-sticky-cta" class="text-gray-400 hover:text-white transition-colors p-2" aria-label="Close">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .sticky-cta {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .sticky-cta.show {
+    transform: translateY(0);
+  }
+
+  .btn-primary-sm {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1.25rem;
+    background: white;
+    color: #0ea5e9;
+    font-weight: 600;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+
+  .btn-primary-sm:hover {
+    background: #f0f9ff;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  }
+
+  @media (max-width: 640px) {
+    .sticky-cta {
+      font-size: 0.875rem;
+    }
+  }
+</style>
+
+<script>
+  // Show sticky CTA after scrolling past hero section
+  const stickyCta = document.getElementById('sticky-cta');
+  const closeBtn = document.getElementById('close-sticky-cta');
+  let dismissed = false;
+
+  // Check if user previously dismissed
+  if (localStorage.getItem('sticky-cta-dismissed') === 'true') {
+    dismissed = true;
+  }
+
+  function handleScroll() {
+    if (dismissed) return;
+
+    const scrollPosition = window.scrollY;
+    const windowHeight = window.innerHeight;
+
+    // Show after scrolling past first viewport
+    if (scrollPosition > windowHeight * 0.7) {
+      stickyCta?.classList.add('show');
+      stickyCta?.classList.remove('hidden');
+    } else {
+      stickyCta?.classList.remove('show');
+    }
+  }
+
+  // Close button handler
+  closeBtn?.addEventListener('click', () => {
+    stickyCta?.classList.remove('show');
+    setTimeout(() => {
+      stickyCta?.classList.add('hidden');
+    }, 300);
+    dismissed = true;
+    localStorage.setItem('sticky-cta-dismissed', 'true');
+  });
+
+  // Attach scroll listener
+  window.addEventListener('scroll', handleScroll, { passive: true });
+
+  // Check initial scroll position
+  handleScroll();
+</script>
