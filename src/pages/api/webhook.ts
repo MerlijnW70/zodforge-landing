@@ -5,7 +5,7 @@ import { Resend } from 'resend';
 
 // Initialize services
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2024-11-20.acacia',
+  apiVersion: '2024-11-20.acacia' as any,
 });
 
 const supabase = createClient(

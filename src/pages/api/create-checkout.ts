@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 
 // Initialize Stripe with secret key from environment
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2024-11-20.acacia',
+  apiVersion: '2024-11-20.acacia' as any,
 });
 
 export const prerender = false; // This is a server-side route
