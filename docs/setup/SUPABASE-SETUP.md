@@ -10,7 +10,7 @@ This guide walks you through setting up Supabase for customer and usage tracking
 ## Prerequisites
 
 ✅ You have a Supabase account (https://supabase.com)
-✅ You have your Supabase URL: `https://lnmkkpgzjdavkehxeihs.supabase.co`
+✅ You have created a Supabase project
 
 ---
 
@@ -25,7 +25,7 @@ This guide walks you through setting up Supabase for customer and usage tracking
 
    **Project URL**:
    ```
-   https://lnmkkpgzjdavkehxeihs.supabase.co
+   https://YOUR_PROJECT_REF.supabase.co
    ```
    Save as: **SUPABASE_URL**
 
@@ -190,7 +190,7 @@ Edit `.env` in `zodforge-landing/`:
 
 ```env
 # Supabase Configuration
-SUPABASE_URL=https://lnmkkpgzjdavkehxeihs.supabase.co
+SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
 SUPABASE_SERVICE_KEY=eyJhbGc... # Your service_role key from Step 1
 ```
 
@@ -201,7 +201,7 @@ SUPABASE_SERVICE_KEY=eyJhbGc... # Your service_role key from Step 1
 3. Go to **Variables** tab
 4. Add these two variables:
    ```
-   SUPABASE_URL=https://lnmkkpgzjdavkehxeihs.supabase.co
+   SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
    SUPABASE_SERVICE_KEY=eyJhbGc... # Your service_role key
    ```
 5. Railway will auto-redeploy (takes ~2 minutes)
