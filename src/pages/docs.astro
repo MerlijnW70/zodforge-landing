@@ -85,7 +85,7 @@ const apiUrl = 'https://web-production-f15d.up.railway.app';
 
           <h3 class="text-2xl font-semibold mb-3 text-white">Installation</h3>
           <div class="bg-gray-900 rounded-lg p-4 mb-6">
-            <pre class="text-sm text-gray-300"><code>npm install @merlijnw70/zodforge-cloud zod</code></pre>
+            <pre class="text-sm text-gray-300"><code>npm install @zodforge/cloud zod</code></pre>
           </div>
 
           <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-6 mb-6">
@@ -94,12 +94,12 @@ const apiUrl = 'https://web-production-f15d.up.railway.app';
               View the full package documentation on npm:
             </p>
             <a
-              href="https://www.npmjs.com/package/@merlijnw70/zodforge-cloud"
+              href="https://www.npmjs.com/package/@zodforge/cloud"
               target="_blank"
               rel="noopener noreferrer"
               class="text-primary-400 hover:underline font-mono text-sm"
             >
-              npmjs.com/package/@merlijnw70/zodforge-cloud →
+              npmjs.com/package/@zodforge/cloud →
             </a>
           </div>
 
@@ -110,7 +110,7 @@ const apiUrl = 'https://web-production-f15d.up.railway.app';
 
           <h4 class="text-xl font-semibold mb-3 text-white">Method 1: Client Instance (Recommended)</h4>
           <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-6">
-            <pre class="text-sm text-gray-300"><code>{`import { ZodForgeClient } from '@merlijnw70/zodforge-cloud';
+            <pre class="text-sm text-gray-300"><code>{`import { ZodForgeClient } from '@zodforge/cloud';
 
 const client = new ZodForgeClient({
   apiKey: 'zf_your_api_key_here'
@@ -134,7 +134,7 @@ console.log(result.refinedSchema.code);
 
           <h4 class="text-xl font-semibold mb-3 text-white">Method 2: Convenience Functions</h4>
           <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-6">
-            <pre class="text-sm text-gray-300"><code>{`import { refineSchema, setApiKey } from '@merlijnw70/zodforge-cloud';
+            <pre class="text-sm text-gray-300"><code>{`import { refineSchema, setApiKey } from '@zodforge/cloud';
 
 // Set API key globally
 setApiKey('zf_your_api_key_here');
