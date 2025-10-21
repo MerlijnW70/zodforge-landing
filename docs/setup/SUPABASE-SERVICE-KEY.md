@@ -7,7 +7,7 @@
 ## Quick Steps
 
 1. **Go to your Supabase project**:
-   - Visit: https://supabase.com/dashboard/project/lnmkkpgzjdavkehxeihs
+   - Visit: https://supabase.com/dashboard → Select your project
 
 2. **Navigate to Settings → API**:
    - Click the **Settings** gear icon in the left sidebar
@@ -27,7 +27,7 @@
    - Starts with: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...`
    - Example (yours will be different):
      ```
-     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxubWtrcGd6amRhdmtlaHhlaWhzIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc2MDk2MDE2MywiZXhwIjoyMDc2NTM2MTYzfQ.DIFFERENT_SIGNATURE_HERE
+     eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IllvdXJQcm9qZWN0UmVmIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTYyMzg1MDAwMCwiZXhwIjoyMzc5NTg3MTk5fQ.YOUR_SIGNATURE_HERE
      ```
 
 ---

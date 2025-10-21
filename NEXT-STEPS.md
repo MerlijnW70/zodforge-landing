@@ -107,7 +107,7 @@ git push
 4. Click **"Add New"**
 5. Fill in:
    - **Name:** `RESEND_API_KEY`
-   - **Value:** `re_gXLRosD1_J1oaURZY1D2fQdusVPueXUj6`
+   - **Value:** `re_YOUR_API_KEY_FROM_RESEND_DASHBOARD`
    - **Environments:** ✅ Production, ✅ Preview
 6. Click **"Save"**
 
@@ -115,7 +115,7 @@ git push
 ```bash
 cd zodforge-landing
 vercel env add RESEND_API_KEY
-# When prompted, paste: re_gXLRosD1_J1oaURZY1D2fQdusVPueXUj6
+# When prompted, paste: re_YOUR_API_KEY_FROM_RESEND_DASHBOARD
 # Select: Production, Preview
 ```
 

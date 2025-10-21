@@ -62,7 +62,7 @@ This prevents the issue from happening again.
 3. **Add RESEND_API_KEY**:
    ```
    Name: RESEND_API_KEY
-   Value: re_gXLRosD1_J1oaURZY1D2fQdusVPueXUj6
+   Value: re_YOUR_API_KEY_FROM_RESEND_DASHBOARD
    Environments: ✅ Production, ✅ Preview, ✅ Development
    ```
 
@@ -143,7 +143,7 @@ Sometimes emails land in spam. Ask customer to check:
 ```bash
 # Test that Resend API key works
 curl -X POST 'https://api.resend.com/emails' \
-  -H 'Authorization: Bearer re_gXLRosD1_J1oaURZY1D2fQdusVPueXUj6' \
+  -H 'Authorization: Bearer re_YOUR_API_KEY_FROM_RESEND_DASHBOARD' \
   -H 'Content-Type: application/json' \
   -d '{
     "from": "ZodForge Cloud <noreply@zodforge.dev>",
