@@ -20,10 +20,14 @@ const apiUrl = 'https://web-production-f15d.up.railway.app';
       </div>
 
       <!-- Quick Links -->
-      <div class="grid md:grid-cols-4 gap-4 mb-12">
+      <div class="grid md:grid-cols-5 gap-4 mb-12">
         <a href="#getting-started" class="card hover:border-primary-600/50 transition-colors text-center">
           <div class="text-3xl mb-2">🚀</div>
           <div class="font-semibold text-white">Getting Started</div>
+        </a>
+        <a href="#typescript-sdk" class="card hover:border-primary-600/50 transition-colors text-center">
+          <div class="text-3xl mb-2">📦</div>
+          <div class="font-semibold text-white">TypeScript SDK</div>
         </a>
         <a href="#authentication" class="card hover:border-primary-600/50 transition-colors text-center">
           <div class="text-3xl mb-2">🔑</div>
@@ -69,6 +73,160 @@ const apiUrl = 'https://web-production-f15d.up.railway.app';
     "samples": [{ "email": "test@example.com" }]
   }'`}</code></pre>
           </div>
+        </section>
+
+        <!-- TypeScript SDK -->
+        <section id="typescript-sdk" class="mb-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">📦 TypeScript SDK</h2>
+          <p class="text-gray-300 leading-relaxed mb-6">
+            The official TypeScript SDK provides a type-safe, developer-friendly way to interact with the ZodForge API.
+            No manual fetch calls, full IntelliSense support, and built-in retry logic.
+          </p>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Installation</h3>
+          <div class="bg-gray-900 rounded-lg p-4 mb-6">
+            <pre class="text-sm text-gray-300"><code>npm install @merlijnw70/zodforge-cloud zod</code></pre>
+          </div>
+
+          <div class="bg-blue-500/10 border border-blue-500/30 rounded-lg p-6 mb-6">
+            <h4 class="text-lg font-semibold text-blue-400 mb-2">📚 NPM Package</h4>
+            <p class="text-gray-300 text-sm mb-2">
+              View the full package documentation on npm:
+            </p>
+            <a
+              href="https://www.npmjs.com/package/@merlijnw70/zodforge-cloud"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-primary-400 hover:underline font-mono text-sm"
+            >
+              npmjs.com/package/@merlijnw70/zodforge-cloud →
+            </a>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Quick Start</h3>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Two simple ways to use the SDK:
+          </p>
+
+          <h4 class="text-xl font-semibold mb-3 text-white">Method 1: Client Instance (Recommended)</h4>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-6">
+            <pre class="text-sm text-gray-300"><code>{`import { ZodForgeClient } from '@merlijnw70/zodforge-cloud';
+
+const client = new ZodForgeClient({
+  apiKey: 'zf_your_api_key_here'
+});
+
+const result = await client.refineSchema({
+  schema: {
+    code: 'z.object({ email: z.string() })',
+    typeName: 'User',
+    fields: { email: 'z.string()' }
+  },
+  samples: [
+    { email: 'user@example.com' },
+    { email: 'Admin@TEST.org' }
+  ]
+});
+
+console.log(result.refinedSchema.code);
+// z.object({ email: z.string().email().toLowerCase().trim() })`}</code></pre>
+          </div>
+
+          <h4 class="text-xl font-semibold mb-3 text-white">Method 2: Convenience Functions</h4>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-6">
+            <pre class="text-sm text-gray-300"><code>{`import { refineSchema, setApiKey } from '@merlijnw70/zodforge-cloud';
+
+// Set API key globally
+setApiKey('zf_your_api_key_here');
+
+const result = await refineSchema({
+  schema: {
+    code: 'z.object({ price: z.number(), currency: z.string() })',
+    typeName: 'Product',
+    fields: { price: 'z.number()', currency: 'z.string()' }
+  },
+  samples: [
+    { price: 100, currency: 'USD' },
+    { price: 50, currency: 'EUR' }
+  ]
+});
+
+// Check semantic relationships (Context Reasoning)
+console.log(result.refinedSchema.relationships);
+// [{
+//   fields: ['price', 'currency'],
+//   pattern: 'monetary_value',
+//   suggestion: 'Consider creating a Money type...',
+//   confidence: 0.92
+// }]`}</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Advanced Features</h3>
+
+          <h4 class="text-xl font-semibold mb-3 text-white">🧠 Context Reasoning</h4>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            The AI detects semantic relationships between fields:
+          </p>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-6">
+            <pre class="text-sm text-gray-300"><code>{`// AI automatically detects lat+lng relationship
+const result = await client.refineSchema({
+  schema: {
+    code: 'z.object({ lat: z.number(), lng: z.number() })',
+    typeName: 'Location',
+    fields: { lat: 'z.number()', lng: 'z.number()' }
+  },
+  samples: [
+    { lat: 51.5074, lng: -0.1278 },  // London
+    { lat: 40.7128, lng: -74.0060 }  // New York
+  ]
+});
+
+// Check detected relationships
+result.refinedSchema.relationships.forEach(rel => {
+  console.log(\`Pattern: \${rel.pattern}\`);       // "geolocation"
+  console.log(\`Confidence: \${rel.confidence}\`);   // 0.95
+  console.log(\`Suggestion: \${rel.suggestion}\`);
+});`}</code></pre>
+          </div>
+
+          <h4 class="text-xl font-semibold mb-3 text-white">🔍 Enhanced Explainability</h4>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Every improvement includes full traceability:
+          </p>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-6">
+            <pre class="text-sm text-gray-300"><code>{`result.refinedSchema.improvements.forEach(imp => {
+  console.log(\`Field: \${imp.field}\`);
+  console.log(\`Source: \${imp.sourceSnippet}\`);      // Actual sample data
+  console.log(\`Pattern: \${imp.detectedPattern}\`);   // e.g., "email_format"
+  console.log(\`Rule: \${imp.ruleApplied}\`);          // e.g., "RFC5322_email"
+  console.log(\`Change: \${imp.before} → \${imp.after}\`);
+});`}</code></pre>
+          </div>
+
+          <h4 class="text-xl font-semibold mb-3 text-white">⚡ Response Caching</h4>
+          <p class="text-gray-300 leading-relaxed mb-4">
+            Identical requests are cached for instant responses:
+          </p>
+          <div class="bg-gray-900 rounded-lg p-4 overflow-x-auto mb-6">
+            <pre class="text-sm text-gray-300"><code>{`// First call: ~9 seconds (AI processing)
+const result1 = await client.refineSchema(request);
+console.log(result1.processingTime);  // ~9000ms
+
+// Second identical call: <1ms (cached)
+const result2 = await client.refineSchema(request);
+console.log(result2.cached);          // true
+console.log(result2.processingTime);  // <1ms`}</code></pre>
+          </div>
+
+          <h3 class="text-2xl font-semibold mb-3 text-white">Other SDK Features</h3>
+          <ul class="list-disc list-inside text-gray-300 space-y-2 mb-6">
+            <li><strong>Health Check:</strong> <code class="font-mono bg-gray-800 px-1">await client.getHealth()</code></li>
+            <li><strong>Usage Stats:</strong> <code class="font-mono bg-gray-800 px-1">await client.getUsage()</code></li>
+            <li><strong>Error Handling:</strong> Built-in retry logic with exponential backoff</li>
+            <li><strong>TypeScript Support:</strong> Full type definitions with IntelliSense</li>
+            <li><strong>Zero Dependencies:</strong> No runtime dependencies (only Zod as peer dep)</li>
+            <li><strong>Dual Module:</strong> CommonJS + ESM support</li>
+          </ul>
         </section>
 
         <!-- Authentication -->
