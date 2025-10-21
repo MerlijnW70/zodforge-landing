@@ -1,40 +1,40 @@
 ---
 const features = [
   {
+    icon: '🧠',
+    title: 'Context Reasoning',
+    description:
+      'AI detects semantic relationships between fields (price+currency, lat+lng) and suggests composite schemas with 85%+ confidence.',
+  },
+  {
+    icon: '🔍',
+    title: 'Enhanced Explainability',
+    description:
+      'Full traceability for every change: see the exact sample data, detected pattern, and validation rule that triggered each improvement.',
+  },
+  {
+    icon: '⚡',
+    title: 'Response Caching',
+    description:
+      'Identical requests cached for instant responses. 9,750x faster on cache hits: <1ms vs ~9s uncached.',
+  },
+  {
     icon: '🤖',
     title: 'Dual AI Providers',
     description:
       'Powered by OpenAI GPT-4 Turbo and Anthropic Claude 3.5 Sonnet with automatic fallback for 99.99% uptime.',
   },
   {
-    icon: '⚡',
-    title: 'Lightning Fast',
+    icon: '📦',
+    title: 'TypeScript SDK',
     description:
-      'Average response time under 2 seconds. Get refined schemas instantly without waiting.',
+      'Official npm package with zero config, full type definitions, retry logic, and environment variable support.',
   },
   {
     icon: '🔒',
     title: 'Enterprise Security',
     description:
       '10-layer security hardening with rate limiting, API key validation, and comprehensive audit logs.',
-  },
-  {
-    icon: '📊',
-    title: 'Smart Refinement',
-    description:
-      'AI analyzes your schemas and suggests improvements: better constraints, clearer validation, production patterns.',
-  },
-  {
-    icon: '🎯',
-    title: 'Type-Safe',
-    description:
-      'Generate fully typed TypeScript + Zod schemas with IntelliSense support and compile-time safety.',
-  },
-  {
-    icon: '🌍',
-    title: 'Always Available',
-    description:
-      'Multi-region deployment with automatic failover. Your API is always accessible when you need it.',
   },
 ];
 ---
@@ -73,9 +73,10 @@ const features = [
           <div class="text-sm font-mono text-gray-400 mb-2">Input Schema:</div>
           <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
             <pre class="text-gray-300"><code>{`z.object({
-  email: z.string(),
-  age: z.number(),
-  status: z.string(),
+  price: z.number(),
+  currency: z.string(),
+  lat: z.number(),
+  lng: z.number(),
 })`}</code></pre>
           </div>
         </div>
@@ -85,15 +86,20 @@ const features = [
           <div class="text-sm font-mono text-gray-400 mb-2">AI-Refined Schema:</div>
           <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm overflow-x-auto">
             <pre class="text-green-300"><code>{`z.object({
-  email: z.string().email().toLowerCase(),
-  age: z.number().int().min(0).max(150),
-  status: z.enum(['active', 'inactive']),
-})`}</code></pre>
+  price: z.number().positive(),
+  currency: z.enum(['USD', 'EUR', 'GBP']),
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+})
+
+// 🧠 Context Reasoning:
+// - Detected: price+currency → monetary_value
+// - Detected: lat+lng → geolocation`}</code></pre>
           </div>
         </div>
       </div>
       <div class="mt-4 text-center text-sm text-gray-400">
-        <strong class="text-primary-400">3 improvements</strong> in under 2 seconds
+        <strong class="text-primary-400">4 improvements + 2 relationships</strong> detected in <strong class="text-green-400">&lt;1ms (cached)</strong>
       </div>
     </div>
   </div>
