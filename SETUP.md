@@ -1,22 +1,58 @@
-# ZodForge Cloud - Revenue-Ready MVP Setup Guide
+# ZodForge Cloud - Setup Guide
 
-This guide will walk you through setting up the complete payment and email system for ZodForge Cloud.
+This guide provides an overview of setting up the complete payment and email system for ZodForge Cloud.
 
 **Estimated Time**: 30-45 minutes
 
 ---
 
-## 📋 Prerequisites
+## 📋 Quick Start
 
-- [x] Landing page built (you have this!)
-- [ ] Stripe account
-- [ ] Supabase account
-- [ ] Resend account
-- [ ] Vercel account (for deployment)
+For detailed setup instructions, see the docs folder:
+
+- **Stripe**: [`docs/setup/STRIPE-SETUP.md`](docs/setup/STRIPE-SETUP.md) - Payment processing setup
+- **Supabase**: [`docs/setup/SUPABASE-SETUP.md`](docs/setup/SUPABASE-SETUP.md) - Database and customer management
+- **Resend**: [`docs/setup/RESEND-SETUP.md`](docs/setup/RESEND-SETUP.md) - Email delivery and domain verification
+- **Vercel**: [`docs/deployment/VERCEL-DEPLOY.md`](docs/deployment/VERCEL-DEPLOY.md) - Deployment instructions
+
+---
+
+## 🚀 Deployment Checklist
+
+- [ ] Stripe account created and products configured
+- [ ] Supabase database created with customers table
+- [ ] Resend account created and domain verified
+- [ ] Vercel project deployed with environment variables
+- [ ] Test payment completed successfully
+- [ ] Customer email delivered
+
+---
+
+## 📂 Documentation Structure
+
+```
+docs/
+├── setup/
+│   ├── STRIPE-SETUP.md          # Payment processing
+│   ├── SUPABASE-SETUP.md        # Database setup
+│   ├── SUPABASE-SERVICE-KEY.md  # Service key guide
+│   └── RESEND-SETUP.md          # Email delivery
+├── deployment/
+│   ├── VERCEL-DEPLOY.md         # Deployment guide
+│   ├── QUICK-DEPLOY-NOW.md      # Quick reference
+│   └── VERCEL-ENV-VARS.txt      # Environment variables
+├── troubleshooting/
+│   ├── FIX-MISSING-EMAIL.md     # Email delivery issues
+│   ├── YOURHOSTING-DNS-SETUP.md # DNS configuration
+│   └── resend-email-manual.ts   # Manual email script
+└── PHASE-1-SETUP.md             # Phase 1 features guide
+```
 
 ---
 
 ## 1️⃣ Stripe Setup (15 minutes)
+
+**See:** [`docs/setup/STRIPE-SETUP.md`](docs/setup/STRIPE-SETUP.md)
 
 ### Step 1.1: Create Stripe Account
 
