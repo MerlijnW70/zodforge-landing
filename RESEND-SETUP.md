@@ -67,21 +67,27 @@ For production (to avoid "via resend.dev" in emails):
 
 ### 3.2 Add DNS Records
 
-Resend will show you DNS records to add:
+Resend will show you 4 DNS records to add:
 
 ```
-Type: TXT
-Name: _resend
-Value: resend_verify_...
+MX:  send                → 10 feedback-smtp.eu-west-1.amazonses.com
+TXT: send                → v=spf1 include:amazonses.com ~all
+TXT: resend._domainkey   → p=MIGfMA0GCSqGSIb3... (long DKIM key)
+TXT: _dmarc              → v=DMARC1; p=none;
 ```
 
-Add these records in your domain registrar (e.g., Vercel, Cloudflare, Namecheap):
+**For YourHosting.nl users:**
+1. Login to YourHosting control panel
+2. Go to DNS beheer for zodforge.dev
+3. Add all 4 records (see docs/troubleshooting/YOURHOSTING-DNS-SETUP.md)
+4. Wait 10-30 minutes for DNS propagation
+5. Verify at https://dnschecker.org
+6. Click **Verify Records** in Resend
 
-1. Log into your domain provider
-2. Go to DNS settings
-3. Add the TXT and MX records shown by Resend
-4. Wait 5-10 minutes for DNS propagation
-5. Click **Verify Records** in Resend
+**For other providers:**
+- Follow the same pattern with the records above
+- Ensure MX record includes priority: `10 feedback-smtp...`
+- Wait for DNS propagation before verifying
 
 ### 3.3 Update Email Sender
 

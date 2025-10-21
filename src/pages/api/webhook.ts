@@ -35,7 +35,7 @@ function hashApiKey(key: string): string {
 async function sendApiKeyEmail(email: string, apiKey: string, tier: string) {
   try {
     await resend.emails.send({
-      from: 'ZodForge Cloud <noreply@zodforge.dev>',
+      from: 'ZodForge Cloud <onboarding@resend.dev>',
       to: email,
       subject: `Your ZodForge Cloud API Key - ${tier.toUpperCase()} Plan`,
       html: `
