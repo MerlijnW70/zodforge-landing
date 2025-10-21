@@ -63,7 +63,7 @@ The `anon` key would be **blocked by RLS policies** and fail to insert/update da
 Once you have the `service_role` key, add it to `.env`:
 
 ```env
-SUPABASE_URL=https://lnmkkpgzjdavkehxeihs.supabase.co
+SUPABASE_URL=https://YOUR_PROJECT_REF.supabase.co
 SUPABASE_SERVICE_KEY=eyJhbGc... # Paste your service_role key here
 ```
 
